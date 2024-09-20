@@ -88,8 +88,9 @@ class SummaryCard extends StatelessWidget {
           // Background image, if provided
           if (bgImg != null)
             Positioned(
-              right: 0,
-              top: 0,
+              right: 10,
+              top: 2,
+
               child: bgImg!,
             ),
         ],

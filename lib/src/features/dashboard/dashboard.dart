@@ -4,7 +4,6 @@ import 'package:web_responsive_flutter/src/app_configs/app_images.dart';
 import 'package:web_responsive_flutter/src/common_widgets/custom_drawer/custom_drawer.dart';
 import 'package:web_responsive_flutter/src/features/dashboard/provider/dashboard_controller.dart';
 import 'package:web_responsive_flutter/src/features/dashboard/widget/dashboard_widget.dart';
-import '../../app_configs/app_colors.dart';
 import '../../common_widgets/custom_appbar/custom_appBar.dart';
 import '../../utils/responsive.dart';
 
@@ -37,54 +36,48 @@ class MainScreen extends StatelessWidget {
 
       ),
       backgroundColor: Colors.white,
-      drawer: !isDesktop
-          ? SizedBox(
-              width: dashBoardProvider.isDrawerOpen ? 256 : 72,
-              child: SideMenuWidget(
-                menuItems: dashBoardProvider.menuItems,
-                onItemSelected: (index) {
-                  dashBoardProvider.handleMenuItemSelected(index, context);
-                },
-                isDrawerOpen: dashBoardProvider.isDrawerOpen,
-                toggleDrawer: dashBoardProvider.toggleDrawer,
-              ),
-            )
-          : null,
-      endDrawer: Responsive.isMobile(context)
-          ? SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: const Text(""),
-            )
-          : null,
-      body: Column(
+      body: Stack(
         children: [
-          const Divider(
-            color: AppColors.lightGrey,
-            thickness: 1,
-            height: 1,
+          Row(
+            children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 100),
+                width: dashBoardProvider.isDrawerOpen ? 256 : 56,
+                child: SideMenuWidget(
+                  menuItems: dashBoardProvider.menuItems,
+                  onItemSelected: (index) {
+                    dashBoardProvider.handleMenuItemSelected(index, context);
+                  },
+                  isDrawerOpen: dashBoardProvider.isDrawerOpen,
+                  toggleDrawer: dashBoardProvider.toggleDrawer,
+                ),
+              ),
+              const Expanded(
+                flex: 9,
+                child: DashboardWidget(),
+              ),
+            ],
           ),
-          Expanded(
-            child: SafeArea(
-              child: Row(
-                children: [
-                  if (isDesktop)
-                    Expanded(
-                      flex: 2,
-                      child: SideMenuWidget(
-                        menuItems: dashBoardProvider.menuItems,
-                        onItemSelected: (index) {
-                          dashBoardProvider.handleMenuItemSelected(
-                              index, context);
-                        },
-                        isDrawerOpen: dashBoardProvider.isDrawerOpen,
-                        toggleDrawer: dashBoardProvider.toggleDrawer,
-                      ),
-                    ),
-                  const Expanded(
-                    flex: 9,
-                    child: DashboardWidget(),
-                  ),
-                ],
+          Positioned(
+            top: 16,
+            left: dashBoardProvider.isDrawerOpen ? 256 : 40,
+            child: GestureDetector(
+              onTap: () {
+                dashBoardProvider.toggleDrawer();
+              },
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.grey[800],
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Icon(
+                  dashBoardProvider.isDrawerOpen
+                      ? Icons.arrow_back_ios
+                      : Icons.arrow_forward_ios,
+                  size: 12,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
