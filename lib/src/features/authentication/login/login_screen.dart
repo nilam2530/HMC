@@ -29,7 +29,6 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     final authProvider = Provider.of<AuthProvider>(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -62,7 +61,8 @@ class LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildTabletWebLayout(BuildContext context, double height, double width, AuthProvider authProvider) {
+  Widget _buildTabletWebLayout(BuildContext context, double height,
+      double width, AuthProvider authProvider) {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -76,11 +76,13 @@ class LoginScreenState extends State<LoginScreen> {
         child: Row(
           children: [
             Expanded(
-              child: Container(margin: EdgeInsets.symmetric(horizontal: width * 0.1)),
+              child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: width * 0.1)),
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 100.0, vertical: 30),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 100.0, vertical: 30),
                 child: Stack(
                   children: [
                     Container(
@@ -161,7 +163,10 @@ class LoginScreenState extends State<LoginScreen> {
           const SizedBox(height: 16),
           const Text(
             "Username",
-            style: TextStyle(color: Color(0xFF1B242C), fontSize: 14, fontWeight: FontWeight.w400),
+            style: TextStyle(
+                color: Color(0xFF1B242C),
+                fontSize: 14,
+                fontWeight: FontWeight.w400),
           ),
           CustomTextField(
             controller: _usernameController,
@@ -172,12 +177,16 @@ class LoginScreenState extends State<LoginScreen> {
               }
               return null;
             },
-            textInputAction: TextInputAction.next, onSaved: (String? value) {  },
+            textInputAction: TextInputAction.next,
+            onSaved: (String? value) {},
           ),
           const SizedBox(height: 16),
           const Text(
             "Password",
-            style: TextStyle(color: Color(0xFF1B242C), fontSize: 14, fontWeight: FontWeight.w400),
+            style: TextStyle(
+                color: Color(0xFF1B242C),
+                fontSize: 14,
+                fontWeight: FontWeight.w400),
           ),
           CustomTextField(
             controller: _passwordController,
@@ -190,7 +199,8 @@ class LoginScreenState extends State<LoginScreen> {
             },
             isPassword: true,
             isDarkThemed: false,
-            passIconColor: Colors.grey, onSaved: (String? value) {  },
+            passIconColor: Colors.grey,
+            onSaved: (String? value) {},
           ),
           const SizedBox(height: 20),
           _buildLoginButton(authProvider),
@@ -209,25 +219,22 @@ class LoginScreenState extends State<LoginScreen> {
       text: authProvider.loading ? 'Loading' : 'Login',
       onPressed: () {
         if (_formKey.currentState!.validate()) {
-          authProvider.login(_usernameController.text.trim(), _passwordController.text.trim());
+          authProvider.login(
+              _usernameController.text.trim(), _passwordController.text.trim());
           GoRouter.of(context).go('/mainScreen');
         }
       },
     );
   }
 
-
   Widget _buildGoogleLoginButton(AuthProvider authProvider) {
-
     return PrimaryButton(
       imageIcon: SvgPicture.asset(AppImages.googleLogo, height: 24, width: 24),
       backgroundColor: AppColors.whiteColor,
       text: authProvider.loading ? 'Loading' : 'Sign in with Google',
       foregroundColor: Colors.black,
       borderColor: const Color(0xFF9EA8B3),
-      onPressed: () {
-
-      },
+      onPressed: () {},
     );
   }
 
@@ -238,10 +245,14 @@ class LoginScreenState extends State<LoginScreen> {
           child: Divider(color: AppColors.dividerColor, thickness: 1),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.0), // Add some space around the "Or"
+          padding: EdgeInsets.symmetric(
+              horizontal: 8.0), // Add some space around the "Or"
           child: Text(
             "Or",
-            style: TextStyle(color: AppColors.dividerColor, fontSize: 14, fontWeight: FontWeight.w400),
+            style: TextStyle(
+                color: AppColors.dividerColor,
+                fontSize: 14,
+                fontWeight: FontWeight.w400),
           ),
         ),
         Expanded(
@@ -250,5 +261,4 @@ class LoginScreenState extends State<LoginScreen> {
       ],
     );
   }
-
 }

@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-
   static const dividerColor = Color(0xFF7D8B99);
   static const btnRedColor = Color(0xFFEE2326);
   static const darBlack = Color(0xFF000000);
   static const lightGrey = Color(0xFFDEE3E7);
 
-
   //SummaryCardColors
-  static const penDingColors=Color( 0xFFFFEFD1);
-  static const approvalColors=Color( 0xFFE4E6FF);
-  static const rejectColors=Color( 0xFFFFDDD1);
-  static const completionColors=Color( 0xFFC2EDDB);
-  static const bgPenDing=Color( 0xFFF3D397);
-  static const bgApproval=Color( 0xFFC9CBEE);
-  static const bgReject=Color( 0xFFFDC6BD);
-  static const bgComplete=Color( 0xFFA5D6C1);
-
+  static const penDingColors = Color(0xFFFFEFD1);
+  static const approvalColors = Color(0xFFE4E6FF);
+  static const rejectColors = Color(0xFFFFDDD1);
+  static const completionColors = Color(0xFFC2EDDB);
+  static const bgPenDing = Color(0xFFF3D397);
+  static const bgApproval = Color(0xFFC9CBEE);
+  static const bgReject = Color(0xFFFDC6BD);
+  static const bgComplete = Color(0xFFA5D6C1);
 
   static const cardBackgroundColor = Color(0xFF21222D);
   static const primaryColor = Color(0xFF2697FF);
@@ -50,7 +47,6 @@ class AppColors {
   static const blueColor = Color(0xFF4C8CA0);
   static const dartBlueColor = Color(0xFFDEE3E7);
   static const darkMaron = Color(0xFFBD001C);
-
 
   static const linkColor = Color(0xFF388FDF);
   static const btnColor = Color(0xFF6e80e7);

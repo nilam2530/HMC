@@ -118,7 +118,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
           onTap: () async {
             await _pickDate(context);
             if (_selectedDate != null) {
-              await _pickTime(context); // Open time picker after date is selected
+              await _pickTime(
+                  context); // Open time picker after date is selected
             }
           },
           child: Container(
@@ -147,10 +148,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
       ],
     );
   }
+
   Widget _buildSummaryCards(bool isMobile) {
     return Row(
       mainAxisAlignment:
-      isMobile ? MainAxisAlignment.start : MainAxisAlignment.spaceAround,
+          isMobile ? MainAxisAlignment.start : MainAxisAlignment.spaceAround,
       children: [
         SummaryCard(
           bgImg: Image.asset(AppImages.bgImgCard1),
@@ -160,10 +162,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
           label: 'Pending Requests',
           backgroundColor: AppColors.penDingColors,
         ),
-
-         SummaryCard(
+        SummaryCard(
           bgImg: Image.asset(AppImages.bgImgCard2),
-
           imagePath: AppImages.summaryVector,
           value: '25',
           label: 'Completed Requests',
@@ -172,9 +172,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
           iconBackgroundColor: AppColors.bgApproval,
         ),
         if (!isMobile)
-           SummaryCard(
+          SummaryCard(
             bgImg: Image.asset(AppImages.bgImgCard),
-
             imagePath: AppImages.summaryVector,
             value: '33',
             label: 'Completed Requests',
@@ -182,9 +181,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
             imageSize: 20.0,
             iconBackgroundColor: AppColors.bgReject,
           ),
-         SummaryCard(
+        SummaryCard(
           bgImg: Image.asset(AppImages.bgImgCard),
-
           imagePath: AppImages.summaryVector,
           value: '435',
           label: 'Completed Requests',
@@ -200,24 +198,45 @@ class _DashboardWidgetState extends State<DashboardWidget> {
     return Row(
       children: [
         Expanded(
-          child: SizedBox(
-            height: 35,
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: "Search by request no",
-                hintStyle: const TextStyle(fontSize: 14),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-
-                  borderSide: const BorderSide(color: AppColors.whiteColor),
-                ),
-                prefixIcon: const Icon(Icons.search, size: 20),
-                contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 16.0, vertical: 12.0),
-              ),
+            child: Container(
+          width: 150,
+          height: 40,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(6),
+              topRight: Radius.circular(6),
+              bottomLeft: Radius.circular(6),
+              bottomRight: Radius.circular(6),
+            ),
+            color: Color(0xFFF2F2F2),
+            border: Border.all(
+              color: Color(0xFFF2F2F2),
+              width: 1.0,
             ),
           ),
-        ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: const Icon(Icons.search, size: 20),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 0.8),
+                  child: TextField(
+                    decoration: const InputDecoration(
+                      hintText: "Search by request no",
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        )),
         if (!isMobile) const Spacer(),
         const SizedBox(width: 16),
         GestureDetector(
@@ -411,9 +430,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
             hint: Text('Mode of Transportation'),
             items: <String>['Car', 'Bus', 'Train']
                 .map((String value) => DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            ))
+                      value: value,
+                      child: Text(value),
+                    ))
                 .toList(),
             onChanged: (String? newValue) {
               setState(() {
@@ -427,9 +446,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
             hint: Text('Status'),
             items: <String>['Pending', 'Completed']
                 .map((String value) => DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            ))
+                      value: value,
+                      child: Text(value),
+                    ))
                 .toList(),
             onChanged: (String? newValue) {
               setState(() {
@@ -486,7 +505,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
           setState(() {
             _dateRange = selectedRange;
             _dateController.text =
-            '${DateFormat('d MMM yyyy').format(selectedRange.start)} - ${DateFormat('d MMM yyyy').format(selectedRange.end)}';
+                '${DateFormat('d MMM yyyy').format(selectedRange.start)} - ${DateFormat('d MMM yyyy').format(selectedRange.end)}';
           });
         }
       },
@@ -528,9 +547,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
       decoration: InputDecoration(
         labelText: label,
       ),
-      items: items.map((e) => DropdownMenuItem(value: e, child: Text(e.toString()))).toList(),
+      items: items
+          .map((e) => DropdownMenuItem(value: e, child: Text(e.toString())))
+          .toList(),
       onChanged: onChanged,
     );
   }
-
 }

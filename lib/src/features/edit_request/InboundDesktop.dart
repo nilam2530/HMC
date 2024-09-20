@@ -309,7 +309,8 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                                 });
                               }
                             },
-                            controller: TextEditingController(text: _pickupDate?.toString()),
+                            controller: TextEditingController(
+                                text: _pickupDate?.toString()),
                           ),
                         ],
                       ),
@@ -511,13 +512,18 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                               // FilePickerResult? result = await FilePicker.platform.pickFile();
                             },
                             child: Container(
-                              height: 40, // Adjust the height to match the other boxes
+                              height:
+                                  40, // Adjust the height to match the other boxes
                               decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey), // Changed the border color to a light grey
-                                borderRadius: BorderRadius.all(Radius.circular(5)),
+                                border: Border.all(
+                                    color: Colors
+                                        .grey), // Changed the border color to a light grey
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)),
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(10.0),
@@ -552,7 +558,8 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                           TextFormField(
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(5)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)),
                               ),
                               filled: true,
                               fillColor: Colors.white,
@@ -573,7 +580,6 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             CustomSmallButton(
-
               label: 'Cancel',
               onPressed: () {
                 Navigator.pop(context);

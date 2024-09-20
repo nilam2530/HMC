@@ -86,7 +86,8 @@ class _LocationMaainState extends State<LocationMaain> {
       permission = await Geolocator.requestPermission();
     }
 
-    if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
       return false;
     }
 
@@ -111,22 +112,22 @@ class _LocationMaainState extends State<LocationMaain> {
       backgroundColor: Colors.white,
       drawer: !isDesktop
           ? SizedBox(
-        width: 250,
-        child: SideMenuWidget(
-          menuItems: dashBoardProvider.menuItems,
-          onItemSelected: (index) {
-            dashBoardProvider.handleMenuItemSelected(index, context);
-          },
-          isDrawerOpen: dashBoardProvider.isDrawerOpen,
-          toggleDrawer: dashBoardProvider.toggleDrawer,
-        ),
-      )
+              width: 250,
+              child: SideMenuWidget(
+                menuItems: dashBoardProvider.menuItems,
+                onItemSelected: (index) {
+                  dashBoardProvider.handleMenuItemSelected(index, context);
+                },
+                isDrawerOpen: dashBoardProvider.isDrawerOpen,
+                toggleDrawer: dashBoardProvider.toggleDrawer,
+              ),
+            )
           : null,
       endDrawer: Responsive.isMobile(context)
           ? SizedBox(
-        width: MediaQuery.of(context).size.width * 0.8,
-        child: const Text(""),
-      )
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: const Text(""),
+            )
           : null,
       body: Column(
         children: [
@@ -145,7 +146,8 @@ class _LocationMaainState extends State<LocationMaain> {
                       child: SideMenuWidget(
                         menuItems: dashBoardProvider.menuItems,
                         onItemSelected: (index) {
-                          dashBoardProvider.handleMenuItemSelected(index, context);
+                          dashBoardProvider.handleMenuItemSelected(
+                              index, context);
                         },
                         isDrawerOpen: dashBoardProvider.isDrawerOpen,
                         toggleDrawer: dashBoardProvider.toggleDrawer,
@@ -166,7 +168,8 @@ class _LocationMaainState extends State<LocationMaain> {
                       onTap: (loc) {
                         setState(() {
                           marker.add(Marker(
-                            markerId: MarkerId("New_${loc.latitude}_${loc.longitude}"),
+                            markerId: MarkerId(
+                                "New_${loc.latitude}_${loc.longitude}"),
                             position: loc,
                           ));
                         });

@@ -61,13 +61,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
       ),
       actions: widget.actionImages
           .map((imagePath) => IconButton(
-        icon: Image.network(
-          imagePath,
-          width: 20,
-          height: 20,
-        ),
-        onPressed: () {},
-      ))
+                icon: Image.network(
+                  imagePath,
+                  width: 20,
+                  height: 20,
+                ),
+                onPressed: () {},
+              ))
           .toList(),
     );
   }
@@ -95,7 +95,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   children: [
                     const Text(
                       'Applications',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     TextButton(
                       onPressed: () {
@@ -140,7 +141,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       ];
 
                       return ListTile(
-                        leading: Image.asset(imagePaths[index], width: 24, height: 24),
+                        leading: Image.asset(imagePaths[index],
+                            width: 24, height: 24),
                         title: Text(titles[index]),
                       );
                     },

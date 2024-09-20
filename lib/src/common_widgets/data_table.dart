@@ -14,7 +14,7 @@ class DataTableWidgetState extends State<DataTableWidget> {
   final Set<int> _expandedRows = <int>{};
   final List<DataTableModel> _requests = List.generate(
     30,
-        (index) => DataTableModel(
+    (index) => DataTableModel(
       date: "20 Jun 2024",
       requestNo: "LRIB${index.toString().padLeft(5, '0')}",
       type: "Inbound",
@@ -40,7 +40,7 @@ class DataTableWidgetState extends State<DataTableWidget> {
         child: Column(
           children: List.generate(
             _requests.length,
-                (index) {
+            (index) {
               final request = _requests[index];
               final isExpanded = _expandedRows.contains(index);
 
@@ -77,14 +77,19 @@ class DataTableWidgetState extends State<DataTableWidget> {
                                       ),
                                     ),
                                     const SizedBox(height: 16.0),
-                                    _buildInfoRow('Section', 'Dgt.Eng&Test.Dev - Rahul\nBHARADWAJ'),
-                                    _buildInfoRow('Pickup Address', 'Gurugram NIT'),
+                                    _buildInfoRow('Section',
+                                        'Dgt.Eng&Test.Dev - Rahul\nBHARADWAJ'),
+                                    _buildInfoRow(
+                                        'Pickup Address', 'Gurugram NIT'),
                                     _buildInfoRow('Pickup Pincode', '122012'),
-                                    _buildInfoRow('Destination Address', 'CIT Jaipur'),
-                                    _buildInfoRow('Destination Pincode', '302023'),
+                                    _buildInfoRow(
+                                        'Destination Address', 'CIT Jaipur'),
+                                    _buildInfoRow(
+                                        'Destination Pincode', '302023'),
                                     _buildInfoRow('Approx Weight', '2 Kg/L'),
                                     _buildInfoRow('Invoice Value', '1'),
-                                    _buildInfoRow('Mode Of Transportation', 'Land - Part Truck Load'),
+                                    _buildInfoRow('Mode Of Transportation',
+                                        'Land - Part Truck Load'),
                                   ],
                                 ),
                               ),
@@ -101,15 +106,21 @@ class DataTableWidgetState extends State<DataTableWidget> {
                                       ),
                                     ),
                                     const SizedBox(height: 16.0),
-                                    _buildInfoRow('Pickup Date', '18 July 2024'),
-                                    _buildInfoRow('Pickup Date', '18 July 2024'),
-                                    _buildInfoRow('Contact Person Name', 'Surendar Singh'),
-                                    _buildInfoRow('Contact Person Mobile No.', '9081234521'),
+                                    _buildInfoRow(
+                                        'Pickup Date', '18 July 2024'),
+                                    _buildInfoRow(
+                                        'Pickup Date', '18 July 2024'),
+                                    _buildInfoRow('Contact Person Name',
+                                        'Surendar Singh'),
+                                    _buildInfoRow('Contact Person Mobile No.',
+                                        '9081234521'),
                                     _buildInfoRow('Attachment', 'xls.file'),
                                     _buildInfoRow('Number Of Packages', '120'),
                                     _buildInfoRow('Package Dimensions', '4X4'),
-                                    _buildInfoRow('Document/PO Number', 'PO10120'),
-                                    _buildInfoRow('Special Instructions', 'TEST'),
+                                    _buildInfoRow(
+                                        'Document/PO Number', 'PO10120'),
+                                    _buildInfoRow(
+                                        'Special Instructions', 'TEST'),
                                   ],
                                 ),
                               ),
@@ -146,10 +157,13 @@ Widget _buildInfoRow(String label, String value) {
           ),
         ),
       ),
-      SizedBox(width: 40,),
+      SizedBox(
+        width: 40,
+      ),
       Text(":"),
-      SizedBox(width: 20,),
-
+      SizedBox(
+        width: 20,
+      ),
       Text(value),
     ],
   );
@@ -185,7 +199,7 @@ class DataRowWidget extends StatelessWidget {
             Expanded(child: Text(request.status)),
             Container(
               padding: const EdgeInsets.all(8),
-              child:  Row(
+              child: Row(
                 children: [
                   Container(
                     padding: const EdgeInsets.all(8),

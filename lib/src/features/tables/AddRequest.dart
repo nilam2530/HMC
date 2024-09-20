@@ -15,7 +15,8 @@ class AddRequest extends StatefulWidget {
   State<AddRequest> createState() => _AddRequestState();
 }
 
-class _AddRequestState extends State<AddRequest> with SingleTickerProviderStateMixin {
+class _AddRequestState extends State<AddRequest>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -65,22 +66,22 @@ class AddRequestScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       drawer: !isDesktop
           ? SizedBox(
-        width: 250,
-        child: SideMenuWidget(
-          menuItems: dashBoardProvider.menuItems,
-          onItemSelected: (index) {
-            dashBoardProvider.handleMenuItemSelected(index, context);
-          },
-          isDrawerOpen: dashBoardProvider.isDrawerOpen,
-          toggleDrawer: dashBoardProvider.toggleDrawer,
-        ),
-      )
+              width: 250,
+              child: SideMenuWidget(
+                menuItems: dashBoardProvider.menuItems,
+                onItemSelected: (index) {
+                  dashBoardProvider.handleMenuItemSelected(index, context);
+                },
+                isDrawerOpen: dashBoardProvider.isDrawerOpen,
+                toggleDrawer: dashBoardProvider.toggleDrawer,
+              ),
+            )
           : null,
       endDrawer: Responsive.isMobile(context)
           ? SizedBox(
-        width: MediaQuery.of(context).size.width * 0.8,
-        child: const Text(""),
-      )
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: const Text(""),
+            )
           : null,
       body: Column(
         children: [
@@ -99,7 +100,8 @@ class AddRequestScreen extends StatelessWidget {
                       child: SideMenuWidget(
                         menuItems: dashBoardProvider.menuItems,
                         onItemSelected: (index) {
-                          dashBoardProvider.handleMenuItemSelected(index, context);
+                          dashBoardProvider.handleMenuItemSelected(
+                              index, context);
                         },
                         isDrawerOpen: dashBoardProvider.isDrawerOpen,
                         toggleDrawer: dashBoardProvider.toggleDrawer,
@@ -119,7 +121,7 @@ class AddRequestScreen extends StatelessWidget {
                           unselectedLabelStyle: const TextStyle(fontSize: 18),
                           indicator: const UnderlineTabIndicator(
                             borderSide:
-                            BorderSide(color: Colors.red, width: 4.0),
+                                BorderSide(color: Colors.red, width: 4.0),
                           ),
                         ),
                         Expanded(

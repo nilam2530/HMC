@@ -11,10 +11,11 @@ class SuccessMessage extends StatelessWidget {
       ),
       backgroundColor: const Color(0xFF1CA076),
       content: SizedBox(
-        width:338,
+        width: 338,
         height: 44, // Set a more appropriate height for the content
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween, // Align content and icon button with space between
+          mainAxisAlignment: MainAxisAlignment
+              .spaceBetween, // Align content and icon button with space between
           children: [
             Row(
               children: [
@@ -23,7 +24,7 @@ class SuccessMessage extends StatelessWidget {
                 const Text(
                   'Request Submitted Successfully',
                   style: TextStyle(
-                    color:Color(0xFFFBFCFD),
+                    color: Color(0xFFFBFCFD),
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -33,7 +34,7 @@ class SuccessMessage extends StatelessWidget {
             // Move IconButton outside the inner Row to align it properly
             IconButton(
               onPressed: () {
-              //onPressed Logic
+                //onPressed Logic
               },
               icon: const Icon(Icons.close, color: Colors.white),
             ),

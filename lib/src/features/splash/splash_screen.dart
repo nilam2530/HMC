@@ -28,12 +28,11 @@ class SplashScreenState extends State<SplashScreen> {
       padding: EdgeInsets.all(20),
       decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-              AppImages.splashScreen,
-            ),
-            fit: BoxFit.cover,
-          )),
-
+        image: AssetImage(
+          AppImages.splashScreen,
+        ),
+        fit: BoxFit.cover,
+      )),
     );
   }
 }

@@ -18,9 +18,9 @@ class SideMenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      width: isDrawerOpen ? 256 : 72,  // Animate width change
+      width: isDrawerOpen ? 256 : 72, // Animate width change
       duration: const Duration(milliseconds: 200),
-      height: 1089,  // Fixed height as per your requirement
+      height: 1089, // Fixed height as per your requirement
       decoration: BoxDecoration(
         color: const Color(0xFF171821),
         border: const Border(
@@ -43,7 +43,7 @@ class SideMenuWidget extends StatelessWidget {
                   icon: menuItem.icon,
                   title: menuItem.title,
                   isSelected: false,
-                  isDrawerOpen: isDrawerOpen,  // Pass isDrawerOpen down
+                  isDrawerOpen: isDrawerOpen, // Pass isDrawerOpen down
                   onTap: () => onItemSelected(index),
                 );
               },

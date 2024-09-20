@@ -52,8 +52,9 @@ class PrimaryButton extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 if (imageIcon != null) ...[
-                  imageIcon!,  // Display the imageIcon if it's provided
-                  const SizedBox(width: Sizes.p8), // Add spacing between icon and text
+                  imageIcon!, // Display the imageIcon if it's provided
+                  const SizedBox(
+                      width: Sizes.p8), // Add spacing between icon and text
                 ],
                 Text(
                   text,

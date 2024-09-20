@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-const mobileWidth=600;
+
+const mobileWidth = 600;
+
 class Responsive {
   static bool isMobile(BuildContext context) =>
       MediaQuery.of(context).size.width < 600;

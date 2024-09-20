@@ -128,13 +128,11 @@ class CustomTextFieldState extends State<CustomTextField> {
                   ),
                   errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(borderRadius),
-                    borderSide:
-                        const BorderSide(color: Colors.red, width: 0.5),
+                    borderSide: const BorderSide(color: Colors.red, width: 0.5),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(borderRadius),
-                    borderSide:
-                        const BorderSide(color: Colors.red, width: 0.5),
+                    borderSide: const BorderSide(color: Colors.red, width: 0.5),
                   ),
                   suffixIcon: widget.suffix ??
                       (widget.isPassword

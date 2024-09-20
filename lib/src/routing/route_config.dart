@@ -4,6 +4,7 @@ import 'package:web_responsive_flutter/src/features/edit_request/edit_request.da
 import 'package:web_responsive_flutter/src/features/locations/location_screen.dart';
 import 'package:web_responsive_flutter/src/features/splash/splash_screen.dart';
 import 'package:web_responsive_flutter/src/features/tables/AddRequest.dart';
+import 'package:web_responsive_flutter/src/features/view_request/view_request.dart';
 import 'package:web_responsive_flutter/src/routing/not_found_screen.dart';
 import 'package:web_responsive_flutter/src/routing/route_names.dart';
 
@@ -46,6 +47,11 @@ class AppRouter {
           path: AppRoute.editrequest.getPath,
           name: AppRoute.editrequest.getName,
           builder: (context, state) => const EditRequestScreen(),
+        ),
+        GoRoute(
+          path: AppRoute.viewrequest.getPath,
+          name: AppRoute.viewrequest.getName,
+          builder: (context, state) => const ViewRequestScreen(),
         ),
       ],
       errorBuilder: (context, state) => const NotFoundScreen(),

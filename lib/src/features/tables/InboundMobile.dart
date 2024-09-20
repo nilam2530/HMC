@@ -314,7 +314,8 @@ class _InboundMobileState extends State<InboundMobile> {
                                 });
                               }
                             },
-                            controller: TextEditingController(text: _pickupDate?.toString()),
+                            controller: TextEditingController(
+                                text: _pickupDate?.toString()),
                           ),
                         ],
                       ),
@@ -526,13 +527,18 @@ class _InboundMobileState extends State<InboundMobile> {
                               // FilePickerResult? result = await FilePicker.platform.pickFile();
                             },
                             child: Container(
-                              height: 40, // Adjust the height to match the other boxes
+                              height:
+                                  40, // Adjust the height to match the other boxes
                               decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey), // Changed the border color to a light grey
-                                borderRadius: BorderRadius.all(Radius.circular(5)),
+                                border: Border.all(
+                                    color: Colors
+                                        .grey), // Changed the border color to a light grey
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)),
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(10.0),
@@ -567,7 +573,8 @@ class _InboundMobileState extends State<InboundMobile> {
                           TextFormField(
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(5)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)),
                               ),
                               filled: true,
                               fillColor: Colors.white,
@@ -585,7 +592,7 @@ class _InboundMobileState extends State<InboundMobile> {
           ),
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment .end,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             ElevatedButton(
               onPressed: () {
@@ -604,7 +611,8 @@ class _InboundMobileState extends State<InboundMobile> {
               },
               child: Text(
                 'Submit',
-                style: TextStyle(color: Colors.white), // Set the text color to white
+                style: TextStyle(
+                    color: Colors.white), // Set the text color to white
               ),
             ),
           ],

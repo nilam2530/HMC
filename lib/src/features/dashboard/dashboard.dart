@@ -38,22 +38,22 @@ class MainScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       drawer: !isDesktop
           ? SizedBox(
-        width: dashBoardProvider.isDrawerOpen ? 256 : 72,
-        child: SideMenuWidget(
-          menuItems: dashBoardProvider.menuItems,
-          onItemSelected: (index) {
-            dashBoardProvider.handleMenuItemSelected(index, context);
-          },
-          isDrawerOpen: dashBoardProvider.isDrawerOpen,
-          toggleDrawer: dashBoardProvider.toggleDrawer,
-        ),
-      )
+              width: dashBoardProvider.isDrawerOpen ? 256 : 72,
+              child: SideMenuWidget(
+                menuItems: dashBoardProvider.menuItems,
+                onItemSelected: (index) {
+                  dashBoardProvider.handleMenuItemSelected(index, context);
+                },
+                isDrawerOpen: dashBoardProvider.isDrawerOpen,
+                toggleDrawer: dashBoardProvider.toggleDrawer,
+              ),
+            )
           : null,
       endDrawer: Responsive.isMobile(context)
           ? SizedBox(
-        width: MediaQuery.of(context).size.width * 0.8,
-        child: const Text(""),
-      )
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: const Text(""),
+            )
           : null,
       body: Column(
         children: [
@@ -72,7 +72,8 @@ class MainScreen extends StatelessWidget {
                       child: SideMenuWidget(
                         menuItems: dashBoardProvider.menuItems,
                         onItemSelected: (index) {
-                          dashBoardProvider.handleMenuItemSelected(index, context);
+                          dashBoardProvider.handleMenuItemSelected(
+                              index, context);
                         },
                         isDrawerOpen: dashBoardProvider.isDrawerOpen,
                         toggleDrawer: dashBoardProvider.toggleDrawer,

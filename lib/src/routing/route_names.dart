@@ -4,7 +4,8 @@ enum AppRoute {
   mainScreen,
   requests,
   locations,
-  editrequest
+  editrequest,
+  viewrequest,
 }
 
 extension AppRouteExt on AppRoute {
@@ -22,6 +23,8 @@ extension AppRouteExt on AppRoute {
         return '/locations';
       case AppRoute.editrequest:
         return '/editrequest';
+      case AppRoute.viewrequest:
+        return '/viewrequest';
       default:
         return '/login';
     }
@@ -41,6 +44,8 @@ extension AppRouteExt on AppRoute {
         return 'locations';
       case AppRoute.editrequest:
         return '/editrequest';
+      case AppRoute.viewrequest:
+        return '/viewrequest';
       default:
         return 'login';
     }
