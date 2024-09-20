@@ -51,6 +51,8 @@ class MainScreen extends StatelessWidget {
           onItemSelected: (index) {
             dashBoardProvider.handleMenuItemSelected(index, context);
           },
+          isDrawerOpen: dashBoardProvider.isDrawerOpen,
+          toggleDrawer: dashBoardProvider.toggleDrawer,
         ),
       )
           : null,
@@ -77,9 +79,10 @@ class MainScreen extends StatelessWidget {
                       child: SideMenuWidget(
                         menuItems: dashBoardProvider.menuItems,
                         onItemSelected: (index) {
-                          dashBoardProvider.handleMenuItemSelected(
-                              index, context);
+                          dashBoardProvider.handleMenuItemSelected(index, context);
                         },
+                        isDrawerOpen: dashBoardProvider.isDrawerOpen,
+                        toggleDrawer: dashBoardProvider.toggleDrawer,
                       ),
                     ),
                   Expanded(

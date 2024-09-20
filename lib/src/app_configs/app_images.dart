@@ -8,6 +8,9 @@ class AppImages {
   static const notification = 'assets/images/notification.png';
   static const downArrow = 'assets/images/profile.png';
   static const appBarProfile = 'assets/images/Avatar-Photo-round-96.png';
+  static const bgImgCard = 'assets/images/Vector (8).png';
+  static const bgImgCard1 = 'assets/images/Vector (6).png';
+  static const bgImgCard2 = 'assets/images/Vector (7).png';
 
   //SummaryWidget
   static const summaryVector = 'assets/images/summary_vector.png';

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:web_responsive_flutter/src/app_configs/app_colors.dart';
@@ -62,6 +61,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
     _timeController.dispose();
     super.dispose();
   }
+
+  String? _selectedMode;
+  String? _selectedStatus;
 
   @override
   Widget build(BuildContext context) {
@@ -150,14 +152,18 @@ class _DashboardWidgetState extends State<DashboardWidget> {
       mainAxisAlignment:
       isMobile ? MainAxisAlignment.start : MainAxisAlignment.spaceAround,
       children: [
-        const SummaryCard(
+        SummaryCard(
+          bgImg: Image.asset(AppImages.bgImgCard1),
           iconBackgroundColor: AppColors.bgPenDing,
           imagePath: AppImages.summaryVector,
           value: '40',
           label: 'Pending Requests',
           backgroundColor: AppColors.penDingColors,
         ),
-        const SummaryCard(
+
+         SummaryCard(
+          bgImg: Image.asset(AppImages.bgImgCard2),
+
           imagePath: AppImages.summaryVector,
           value: '25',
           label: 'Completed Requests',
@@ -166,7 +172,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
           iconBackgroundColor: AppColors.bgApproval,
         ),
         if (!isMobile)
-          const SummaryCard(
+           SummaryCard(
+            bgImg: Image.asset(AppImages.bgImgCard),
+
             imagePath: AppImages.summaryVector,
             value: '33',
             label: 'Completed Requests',
@@ -174,7 +182,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
             imageSize: 20.0,
             iconBackgroundColor: AppColors.bgReject,
           ),
-        const SummaryCard(
+         SummaryCard(
+          bgImg: Image.asset(AppImages.bgImgCard),
+
           imagePath: AppImages.summaryVector,
           value: '435',
           label: 'Completed Requests',
@@ -194,10 +204,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
             height: 35,
             child: TextField(
               decoration: InputDecoration(
-                hintText: "Search",
+                hintText: "Search by request no",
                 hintStyle: const TextStyle(fontSize: 14),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30.0),
+                  borderRadius: BorderRadius.circular(10.0),
+
                   borderSide: const BorderSide(color: AppColors.whiteColor),
                 ),
                 prefixIcon: const Icon(Icons.search, size: 20),
@@ -298,149 +309,228 @@ class _DashboardWidgetState extends State<DashboardWidget> {
 
   void _toggleDropdown(BuildContext context) {
     if (isExpanded) {
+      // Remove the overlay when it's expanded
       _overlayEntry?.remove();
+      _overlayEntry = null; // Reset to prevent it from being removed again
     } else {
-      _showDropdown(context);
+      // Create and insert a new overlay entry
+      _overlayEntry = _createOverlayEntry(context);
+      Overlay.of(context).insert(_overlayEntry!);
     }
     setState(() {
       isExpanded = !isExpanded;
     });
   }
 
-  void _showDropdown(BuildContext context) {
-    final OverlayState overlayState = Overlay.of(context);
-
-    _overlayEntry?.remove();
-    _overlayEntry = OverlayEntry(
+  OverlayEntry _createOverlayEntry(BuildContext context) {
+    return OverlayEntry(
       builder: (context) => Positioned(
-        width: 416,
-        top: kToolbarHeight + 250,
-        right: 80,
-        child: Material(
-          elevation: 4,
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.white,
-              border: Border.all(color: Colors.grey.withOpacity(0.2), width: 1),
-            ),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // Filter Title
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Filter',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.close, color: Colors.grey),
-                        onPressed: () => _toggleDropdown(context),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  // Date Range Picker
-                  TextFormField(
-                    controller: _dateController,
-                    readOnly: true,
-                    decoration: InputDecoration(
-                      labelText: 'Date Range',
-                      suffixIcon: Icon(Icons.calendar_today),
-                    ),
-                    onTap: () async {
-                      final DateTimeRange? selectedRange = await showDateRangePicker(
-                        context: context,
-                        firstDate: DateTime(2000),
-                        lastDate: DateTime(2101),
-                        initialDateRange: _dateRange,
-                      );
-                      if (selectedRange != null) {
-                        setState(() {
-                          _dateRange = selectedRange;
-                          _dateController.text = '${DateFormat('d MMM yyyy').format(selectedRange.start)} - ${DateFormat('d MMM yyyy').format(selectedRange.end)}';
-                        });
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  // Time Picker
-                  TextFormField(
-                    controller: _timeController,
-                    readOnly: true,
-                    decoration: InputDecoration(
-                      labelText: 'Select Time',
-                      suffixIcon: Icon(Icons.access_time),
-                    ),
-                    onTap: () async {
-                      TimeOfDay? selectedTime = await showTimePicker(
-                        context: context,
-                        initialTime: TimeOfDay.now(),
-                      );
-                      if (selectedTime != null) {
-                        setState(() {
-                          _timeController.text = selectedTime.format(context);
-                        });
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  // Other Filters
-                  DropdownButtonFormField<String>(
-                    value: _modeOfTransportation,
-                    decoration: const InputDecoration(
-                      labelText: 'Mode of Transportation',
-                    ),
-                    items: ['All', 'Air', 'Sea', 'Land']
-                        .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                        .toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        _modeOfTransportation = value;
-                      });
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  DropdownButtonFormField<String>(
-                    value: _status,
-                    decoration: const InputDecoration(
-                      labelText: 'Status',
-                    ),
-                    items: ['All', 'Pending', 'Completed', 'Rejected']
-                        .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                        .toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        _status = value;
-                      });
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        // Apply filters and close dropdown
-                        _toggleDropdown(context);
-                      }
-                    },
-                    child: const Text('Apply Filters'),
-                  ),
-                ],
-              ),
-            ),
+        width: 250, // Adjust width based on your design
+        child: CompositedTransformFollower(
+          link: _layerLink,
+          showWhenUnlinked: false,
+          offset: const Offset(0, 40), // Offset for the dropdown position
+          child: Material(
+            elevation: 4.0,
+            child: _buildDropdownContent(), // Your custom dropdown content
           ),
         ),
       ),
     );
-    overlayState.insert(_overlayEntry!);
   }
+
+  Widget _buildDropdownContent() {
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      color: Colors.white,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          DropdownButton<String>(
+            value: _selectedMode,
+            hint: const Text('Mode of Transportation'),
+            items: ['All', 'Car', 'Bus', 'Train'].map((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+            onChanged: (String? newValue) {
+              setState(() {
+                _selectedMode = newValue;
+              });
+            },
+          ),
+          const SizedBox(height: 8),
+          DropdownButton<String>(
+            value: _selectedStatus,
+            hint: const Text('Status'),
+            items: ['All', 'Pending', 'Completed'].map((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+            onChanged: (String? newValue) {
+              setState(() {
+                _selectedStatus = newValue;
+              });
+            },
+          ),
+          const SizedBox(height: 8),
+          ElevatedButton(
+            onPressed: () {
+              print('Apply filter with:');
+              print('Mode: $_selectedMode');
+              print('Status: $_selectedStatus');
+              _toggleDropdown(context); // Close the dropdown after applying
+            },
+            child: const Text('Apply'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _showDropdown(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              _presentDatePicker(context);
+            },
+            child: Text(_selectedDate != null
+                ? '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}'
+                : 'Select Date'),
+          ),
+          SizedBox(height: 20),
+          DropdownButton<String>(
+            value: _selectedMode,
+            hint: Text('Mode of Transportation'),
+            items: <String>['Car', 'Bus', 'Train']
+                .map((String value) => DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            ))
+                .toList(),
+            onChanged: (String? newValue) {
+              setState(() {
+                _selectedMode = newValue;
+              });
+            },
+          ),
+          SizedBox(height: 20),
+          DropdownButton<String>(
+            value: _selectedStatus,
+            hint: Text('Status'),
+            items: <String>['Pending', 'Completed']
+                .map((String value) => DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            ))
+                .toList(),
+            onChanged: (String? newValue) {
+              setState(() {
+                _selectedStatus = newValue;
+              });
+            },
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              // Handle apply button press
+              print('Selected Date: $_selectedDate');
+              print('Selected Mode: $_selectedMode');
+              print('Selected Status: $_selectedStatus');
+            },
+            child: Text('Apply'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _presentDatePicker(BuildContext context) {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    ).then((pickedDate) {
+      if (pickedDate == null) return;
+      setState(() {
+        _selectedDate = pickedDate;
+      });
+    });
+  }
+
+// Helper widget for Date Range Picker
+  Widget _buildDateRangePicker(BuildContext context) {
+    return TextFormField(
+      controller: _dateController,
+      readOnly: true,
+      decoration: const InputDecoration(
+        labelText: 'Date Range',
+        suffixIcon: Icon(Icons.calendar_today),
+      ),
+      onTap: () async {
+        final DateTimeRange? selectedRange = await showDateRangePicker(
+          context: context,
+          firstDate: DateTime(2000),
+          lastDate: DateTime(2101),
+          initialDateRange: _dateRange,
+        );
+        if (selectedRange != null) {
+          setState(() {
+            _dateRange = selectedRange;
+            _dateController.text =
+            '${DateFormat('d MMM yyyy').format(selectedRange.start)} - ${DateFormat('d MMM yyyy').format(selectedRange.end)}';
+          });
+        }
+      },
+    );
+  }
+
+// Helper widget for Time Picker
+  Widget _buildTimePicker(BuildContext context) {
+    return TextFormField(
+      controller: _timeController,
+      readOnly: true,
+      decoration: const InputDecoration(
+        labelText: 'Select Time',
+        suffixIcon: Icon(Icons.access_time),
+      ),
+      onTap: () async {
+        final TimeOfDay? selectedTime = await showTimePicker(
+          context: context,
+          initialTime: TimeOfDay.now(),
+        );
+        if (selectedTime != null) {
+          setState(() {
+            _timeController.text = selectedTime.format(context);
+          });
+        }
+      },
+    );
+  }
+
+// Helper widget for Dropdown Menu
+  Widget _buildDropdown<T>({
+    required String label,
+    required T value,
+    required List<T> items,
+    required ValueChanged<T?> onChanged,
+  }) {
+    return DropdownButtonFormField<T>(
+      value: value,
+      decoration: InputDecoration(
+        labelText: label,
+      ),
+      items: items.map((e) => DropdownMenuItem(value: e, child: Text(e.toString()))).toList(),
+      onChanged: onChanged,
+    );
+  }
+
 }

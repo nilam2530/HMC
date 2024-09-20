@@ -117,6 +117,8 @@ class _LocationMaainState extends State<LocationMaain> {
           onItemSelected: (index) {
             dashBoardProvider.handleMenuItemSelected(index, context);
           },
+          isDrawerOpen: dashBoardProvider.isDrawerOpen,
+          toggleDrawer: dashBoardProvider.toggleDrawer,
         ),
       )
           : null,
@@ -145,6 +147,8 @@ class _LocationMaainState extends State<LocationMaain> {
                         onItemSelected: (index) {
                           dashBoardProvider.handleMenuItemSelected(index, context);
                         },
+                        isDrawerOpen: dashBoardProvider.isDrawerOpen,
+                        toggleDrawer: dashBoardProvider.toggleDrawer,
                       ),
                     ),
                   Expanded(

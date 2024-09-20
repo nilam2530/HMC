@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:web_responsive_flutter/src/common_widgets/custom_drawer/custom_drawer.dart';
 
 class DashBoardController with ChangeNotifier {
   int _selectedIndex = 0;
@@ -32,6 +31,7 @@ class DashBoardController with ChangeNotifier {
         break;
       case 3:
         GoRouter.of(context).go('/editrequest');
+        break;
       default:
         break;
     }
@@ -41,4 +41,14 @@ class DashBoardController with ChangeNotifier {
     _isDrawerOpen = !_isDrawerOpen;
     notifyListeners();
   }
+}
+
+class MenuItemData {
+  final String title;
+  final IconData icon;
+
+  const MenuItemData({
+    required this.title,
+    required this.icon,
+  });
 }
