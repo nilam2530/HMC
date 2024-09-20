@@ -11,9 +11,9 @@ class DashBoardController with ChangeNotifier {
   final List<MenuItemData> menuItems = [
     const MenuItemData(title: "Dashboard", icon: Icons.dashboard),
     const MenuItemData(title: "Reports", icon: Icons.insert_chart),
-    const MenuItemData(title: "Location", icon: Icons.location_on_rounded),
     const MenuItemData(title: "Edit Request", icon: Icons.table_view_outlined),
     const MenuItemData(title: "View Request", icon: Icons.table_view_outlined),
+    const MenuItemData(title: "Location", icon: Icons.table_view_outlined),
   ];
 
   void handleMenuItemSelected(int index, BuildContext context) {
@@ -28,13 +28,14 @@ class DashBoardController with ChangeNotifier {
         GoRouter.of(context).go('/requests');
         break;
       case 2:
-        GoRouter.of(context).go('/locations');
-        break;
-      case 3:
         GoRouter.of(context).go('/editrequest');
         break;
-      case 4:
+      case 3:
         GoRouter.of(context).go('/viewrequest');
+        break;
+      case 4:
+        GoRouter.of(context).go('/location');
+        break;
       default:
         break;
     }

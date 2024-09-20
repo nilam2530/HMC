@@ -56,7 +56,7 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
       children: [
         // Inbound Request
         Text(
-          'Add Inbound Request',
+          'Edit Inbound Request',
           style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
         ),
         SizedBox(height: 10),

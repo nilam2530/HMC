@@ -55,7 +55,7 @@ class _InboundMobileState extends State<InboundMobile> {
       children: [
         // Inbound Request
         Text(
-          'Add Inbound Request',
+          'Edit Inbound Request',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         SizedBox(height: 10),

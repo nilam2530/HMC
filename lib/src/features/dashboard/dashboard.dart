@@ -27,13 +27,14 @@ class MainScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: const CustomAppBar(
-        title: "",
+        title: "Welcome to Inbound Logistics",
         actionImages: [
           AppImages.notification,
           AppImages.appBarProfile,
           AppImages.downArrow,
         ],
         imageUrl: AppImages.heroAppBar,
+
       ),
       backgroundColor: Colors.white,
       drawer: !isDesktop

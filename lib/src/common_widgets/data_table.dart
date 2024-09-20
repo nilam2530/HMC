@@ -14,7 +14,7 @@ class DataTableWidgetState extends State<DataTableWidget> {
   final Set<int> _expandedRows = <int>{};
   final List<DataTableModel> _requests = List.generate(
     30,
-    (index) => DataTableModel(
+        (index) => DataTableModel(
       date: "20 Jun 2024",
       requestNo: "LRIB${index.toString().padLeft(5, '0')}",
       type: "Inbound",
@@ -22,6 +22,8 @@ class DataTableWidgetState extends State<DataTableWidget> {
       status: "Pending Request",
     ),
   );
+
+  int _currentPage = 0;
 
   void _toggleRowExpansion(int index) {
     setState(() {
@@ -35,111 +37,149 @@ class DataTableWidgetState extends State<DataTableWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SingleChildScrollView(
-        child: Column(
-          children: List.generate(
-            _requests.length,
-            (index) {
-              final request = _requests[index];
-              final isExpanded = _expandedRows.contains(index);
+    final _paginatedRequests = _requests.skip(_currentPage * _rowsPerPage).take(_rowsPerPage).toList();
+    final _totalPages = (_requests.length / _rowsPerPage).ceil();
 
-              return Column(
-                children: [
-                  DataRowWidget(
-                    index: index,
-                    request: request,
-                    isExpanded: isExpanded,
-                    onTap: () => _toggleRowExpansion(index),
-                  ),
-                  if (isExpanded)
-                    Container(
-                      width: double.maxFinite,
-                      padding: const EdgeInsets.all(16),
-                      color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: SingleChildScrollView(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      'Request Info.',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 16.0),
-                                    _buildInfoRow('Section',
-                                        'Dgt.Eng&Test.Dev - Rahul\nBHARADWAJ'),
-                                    _buildInfoRow(
-                                        'Pickup Address', 'Gurugram NIT'),
-                                    _buildInfoRow('Pickup Pincode', '122012'),
-                                    _buildInfoRow(
-                                        'Destination Address', 'CIT Jaipur'),
-                                    _buildInfoRow(
-                                        'Destination Pincode', '302023'),
-                                    _buildInfoRow('Approx Weight', '2 Kg/L'),
-                                    _buildInfoRow('Invoice Value', '1'),
-                                    _buildInfoRow('Mode Of Transportation',
-                                        'Land - Part Truck Load'),
-                                  ],
-                                ),
+    return Column(
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              children: List.generate(
+                _paginatedRequests.length,
+                    (index) {
+                  final request = _paginatedRequests[index];
+                  final actualIndex = _currentPage * _rowsPerPage + index;
+                  final isExpanded = _expandedRows.contains(actualIndex);
+
+                  return Column(
+                    children: [
+                      DataRowWidget(
+                        index: actualIndex,
+                        request: request,
+                        isExpanded: isExpanded,
+                        onTap: () => _toggleRowExpansion(actualIndex),
+                      ),
+                      if (isExpanded)
+                        Container(
+                          width: double.maxFinite,
+                          padding: const EdgeInsets.all(16),
+                          color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: SingleChildScrollView(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  _buildRequestInfoColumn(),
+                                  _buildPickupAndPackageDetailsColumn(),
+                                ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      'Pick Up & Package Details',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 16.0),
-                                    _buildInfoRow(
-                                        'Pickup Date', '18 July 2024'),
-                                    _buildInfoRow(
-                                        'Pickup Date', '18 July 2024'),
-                                    _buildInfoRow('Contact Person Name',
-                                        'Surendar Singh'),
-                                    _buildInfoRow('Contact Person Mobile No.',
-                                        '9081234521'),
-                                    _buildInfoRow('Attachment', 'xls.file'),
-                                    _buildInfoRow('Number Of Packages', '120'),
-                                    _buildInfoRow('Package Dimensions', '4X4'),
-                                    _buildInfoRow(
-                                        'Document/PO Number', 'PO10120'),
-                                    _buildInfoRow(
-                                        'Special Instructions', 'TEST'),
-                                  ],
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
                         ),
+                      // Divider between rows
+                      Divider(
+                        thickness: 1,
+                        height: 1,
+                        color: Colors.grey[300],
                       ),
-                    ),
-                  // Divider between rows
-                  Divider(
-                    thickness: 1,
-                    height: 1,
-                    color: Colors.grey[300],
-                  ),
-                ],
-              );
-            },
+                    ],
+                  );
+                },
+              ),
+            ),
           ),
         ),
+        // Pagination controls and index count display
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Page ${_currentPage + 1} of $_totalPages'),
+              Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back_ios),
+                    onPressed: _currentPage > 0
+                        ? () {
+                      setState(() {
+                        _currentPage--;
+                      });
+                    }
+                        : null,
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.arrow_forward_ios),
+                    onPressed: _currentPage < _totalPages - 1
+                        ? () {
+                      setState(() {
+                        _currentPage++;
+                      });
+                    }
+                        : null,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRequestInfoColumn() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Request Info.',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 16.0),
+          _buildInfoRow('Section', 'Dgt.Eng&Test.Dev - Rahul BHARADWAJ'),
+          _buildInfoRow('Pickup Address', 'Gurugram NIT'),
+          _buildInfoRow('Pickup Pincode', '122012'),
+          _buildInfoRow('Destination Address', 'CIT Jaipur'),
+          _buildInfoRow('Destination Pincode', '302023'),
+          _buildInfoRow('Approx Weight', '2 Kg/L'),
+          _buildInfoRow('Invoice Value', '1'),
+          _buildInfoRow('Mode Of Transportation', 'Land - Part Truck Load'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPickupAndPackageDetailsColumn() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Pick Up & Package Details',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 16.0),
+          _buildInfoRow('Pickup Date', '18 July 2024'),
+          _buildInfoRow('Contact Person Name', 'Surendar Singh'),
+          _buildInfoRow('Contact Person Mobile No.', '9081234521'),
+          _buildInfoRow('Attachment', 'xls.file'),
+          _buildInfoRow('Number Of Packages', '120'),
+          _buildInfoRow('Package Dimensions', '4X4'),
+          _buildInfoRow('Document/PO Number', 'PO10120'),
+          _buildInfoRow('Special Instructions', 'TEST'),
+        ],
       ),
     );
   }
@@ -157,13 +197,9 @@ Widget _buildInfoRow(String label, String value) {
           ),
         ),
       ),
-      SizedBox(
-        width: 40,
-      ),
-      Text(":"),
-      SizedBox(
-        width: 20,
-      ),
+      const SizedBox(width: 40),
+      const Text(":"),
+      const SizedBox(width: 20),
       Text(value),
     ],
   );

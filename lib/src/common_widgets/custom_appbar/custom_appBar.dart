@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web_responsive_flutter/src/app_configs/app_colors.dart';
 import 'package:web_responsive_flutter/src/app_configs/app_images.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
@@ -55,7 +56,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           const SizedBox(width: 10),
           Text(
             widget.title,
-            style: const TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 16,color: AppColors.lightBlack),
           ),
         ],
       ),
