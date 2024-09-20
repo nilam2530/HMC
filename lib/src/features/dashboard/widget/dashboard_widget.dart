@@ -209,9 +209,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
               bottomLeft: Radius.circular(6),
               bottomRight: Radius.circular(6),
             ),
-            color: Color(0xFFF2F2F2),
+            color: AppColors.dark3Grey,
             border: Border.all(
-              color: Color(0xFFF2F2F2),
+              color: AppColors.dark3Grey,
               width: 1.0,
             ),
           ),
@@ -323,7 +323,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
         style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,
-            color: Color(0xFF4A545E)));
+            color: AppColors.dark4Grey));
   }
 
   void _toggleDropdown(BuildContext context) {

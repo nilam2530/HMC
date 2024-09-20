@@ -5,6 +5,13 @@ class AppColors {
   static const btnRedColor = Color(0xFFEE2326);
   static const darBlack = Color(0xFF000000);
   static const lightGrey = Color(0xFFDEE3E7);
+  static const darkGrey = Color(0xFF525252);
+  static const dark1Grey = Color(0xFF7D8286);
+  static const dark2Grey = Color(0xFFD5D5D5);
+  static const dark3Grey = Color(0xFFF2F2F2);
+  static const dark4Grey = Color(0xFF4A545E);
+  static const dark5Grey = Color(0xFF1B242C);
+  static const dark6Grey = Color(0xFF9EA8B3);
 
   //SummaryCardColors
   static const penDingColors = Color(0xFFFFEFD1);

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../app_configs/app_colors.dart';
+
 class ViewRequestPage extends StatefulWidget {
   const ViewRequestPage({super.key});
 
@@ -90,7 +92,7 @@ class _ViewRequestPageState extends State<ViewRequestPage> {
                 Icon(Icons.chevron_right),
                 Text(
                   "View Request",
-                  style: TextStyle(fontSize: 16, color: Color(0xFF7D8286)),
+                  style: TextStyle(fontSize: 16, color: AppColors.dark1Grey),
                 ),
               ]),
               const Text(
@@ -118,9 +120,7 @@ class _ViewRequestPageState extends State<ViewRequestPage> {
                               borderRadius: BorderRadius.circular(10.0),
                               border: Border.all(
                                 width: 1,
-                                color: const Color(
-                                  0xFFD5D5D5,
-                                ),
+                                color: AppColors.dark2Grey
                               ),
                             ),
                             child: Padding(
@@ -133,43 +133,50 @@ class _ViewRequestPageState extends State<ViewRequestPage> {
                                   _buildRequestInfoRow(
                                       'Section',
                                       'Dgt.Eng&Test. Dev - Rahul Bharadwaj',
-                                      const Color(0xFF272E35),
-                                      const Color(0xFF525252)),
+                                      AppColors.lightGrey,
+                                      AppColors.darkGrey,
+                                  ),
                                   _buildRequestInfoRow(
                                       'Pickup Address',
                                       'Gurugram NIT',
-                                      const Color(0xFF272E35),
-                                      const Color(0xFF525252)),
+                                      AppColors.lightGrey,
+                                    AppColors.darkGrey,
+                                  ),
                                   _buildRequestInfoRow(
                                       'Pickup Pincode',
                                       '122012',
-                                      const Color(0xFF272E35),
-                                      const Color(0xFF525252)),
+                                      AppColors.lightGrey,
+                                    AppColors.darkGrey,
+                                  ),
                                   _buildRequestInfoRow(
                                       'Destination Address',
                                       'CIT Jaipur',
-                                      const Color(0xFF272E35),
-                                      const Color(0xFF525252)),
+                                      AppColors.lightGrey,
+                                    AppColors.darkGrey,),
                                   _buildRequestInfoRow(
                                       'Destination Pincode',
                                       '302023',
-                                      const Color(0xFF272E35),
-                                      const Color(0xFF525252)),
+                                      AppColors.lightGrey,
+                                    AppColors.darkGrey,
+                                  ),
                                   _buildRequestInfoRow(
                                       'Approx Weight',
                                       '2 Kg/L',
-                                      const Color(0xFF272E35),
-                                      const Color(0xFF525252)),
+                                      AppColors.lightGrey,
+                                    AppColors.darkGrey,
+                                  ),
                                   _buildRequestInfoRow(
                                       'Invoice Value',
                                       '1',
-                                      const Color(0xFF272E35),
-                                      const Color(0xFF525252)),
+                                      AppColors.lightGrey,
+                                      AppColors.darkGrey,
+                                  ),
                                   _buildRequestInfoRow(
                                       'Mode Of Transportation',
                                       'Land - Part Truck Load',
-                                      const Color(0xFF272E35),
-                                      const Color(0xFF525252)),
+                                      AppColors.lightGrey,
+                                    AppColors.darkGrey,
+                                  ),
                                 ],
                               ),
                             ),
@@ -195,7 +202,7 @@ class _ViewRequestPageState extends State<ViewRequestPage> {
                               borderRadius: BorderRadius.circular(10.0),
                               border: Border.all(
                                 width: 1,
-                                color: const Color(0xFFD5D5D5),
+                                color: AppColors.dark2Grey,
                               ),
                             ),
                             child: Padding(
@@ -207,40 +214,49 @@ class _ViewRequestPageState extends State<ViewRequestPage> {
                                   _buildRequestInfoRow(
                                       'Pickup Date',
                                       '18 July 2024',
-                                      const Color(0xFF272E35),
-                                      const Color(0xFF525252)),
+                                      AppColors.lightGrey,
+                                    AppColors.darkGrey,
+                                  ),
                                   _buildRequestInfoRow(
                                       'Contact Person Name',
                                       'Surendar Singh',
-                                      const Color(0xFF272E35),
-                                      const Color(0xFF525252)),
+                                      AppColors.lightGrey,
+                                    AppColors.darkGrey,
+                                  ),
                                   _buildRequestInfoRow(
                                       'Contact Person Mobile No.',
                                       '9081234521',
-                                      const Color(0xFF272E35),
-                                      const Color(0xFF525252)),
+                                      AppColors.lightGrey,
+                                    AppColors.darkGrey,
+                                  ),
                                   _buildRequestInfoRow('Attachment', 'xls.file',
-                                      Colors.red, const Color(0xFF525252)),
+                                      Colors.red,
+                                      AppColors.darkGrey,
+                                  ),
                                   _buildRequestInfoRow(
                                       'Number Of Packages',
                                       '120',
-                                      const Color(0xFF272E35),
-                                      const Color(0xFF525252)),
+                                      AppColors.lightGrey,
+                                    AppColors.darkGrey,
+                                  ),
                                   _buildRequestInfoRow(
                                       'Package Dimensions',
                                       '4X4',
-                                      const Color(0xFF272E35),
-                                      const Color(0xFF525252)),
+                                      AppColors.lightGrey,
+                                    AppColors.darkGrey,
+                                  ),
                                   _buildRequestInfoRow(
                                       'Document/PO Number',
                                       'PO10120',
-                                      const Color(0xFF272E35),
-                                      const Color(0xFF525252)),
+                                       AppColors.lightGrey,
+                                    AppColors.darkGrey,
+                                  ),
                                   _buildRequestInfoRow(
                                       'Special Instructions',
                                       'TEST',
-                                      const Color(0xFF272E35),
-                                      const Color(0xFF525252)),
+                                      AppColors.lightGrey,
+                                    AppColors.darkGrey,
+                                  ),
                                 ],
                               ),
                             ),

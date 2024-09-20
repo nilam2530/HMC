@@ -135,7 +135,7 @@ class LoginScreenState extends State<LoginScreen> {
         Text(
           "Welcome to the",
           style: TextStyle(
-            color: Color(0xFF1B242C),
+            color: AppColors.dark5Grey,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -144,7 +144,7 @@ class LoginScreenState extends State<LoginScreen> {
         Text(
           "Dashboard",
           style: TextStyle(
-            color: Color(0xFF1B242C),
+            color: AppColors.dark5Grey,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -164,7 +164,7 @@ class LoginScreenState extends State<LoginScreen> {
           const Text(
             "Username",
             style: TextStyle(
-                color: Color(0xFF1B242C),
+                color: AppColors.dark5Grey,
                 fontSize: 14,
                 fontWeight: FontWeight.w400),
           ),
@@ -184,7 +184,7 @@ class LoginScreenState extends State<LoginScreen> {
           const Text(
             "Password",
             style: TextStyle(
-                color: Color(0xFF1B242C),
+                color: AppColors.dark5Grey,
                 fontSize: 14,
                 fontWeight: FontWeight.w400),
           ),
@@ -233,7 +233,7 @@ class LoginScreenState extends State<LoginScreen> {
       backgroundColor: AppColors.whiteColor,
       text: authProvider.loading ? 'Loading' : 'Sign in with Google',
       foregroundColor: Colors.black,
-      borderColor: const Color(0xFF9EA8B3),
+      borderColor: AppColors.dark6Grey,
       onPressed: () {},
     );
   }
