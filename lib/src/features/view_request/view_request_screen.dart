@@ -20,11 +20,11 @@ class _ViewRequestPageState extends State<ViewRequestPage> {
 
   void _buildSteps() {
     _steps.addAll([
-      Step(
-        title: const Text('Request Placed'),
+      const Step(
+        title: Text('Request Placed'),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text('Amit Kumar'),
             SizedBox(height: 5),
             Text('Comment: Lorem ipsum dolor sit amet consectetur.'),
@@ -33,42 +33,42 @@ class _ViewRequestPageState extends State<ViewRequestPage> {
         isActive: true,
         state: StepState.complete,
       ),
-      Step(
-        title: const Text('Regional Manager'),
+      const Step(
+        title: Text('Regional Manager'),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text('Kartik Sinha'),
           ],
         ),
         isActive: true,
         state: StepState.complete,
       ),
-      Step(
-        title: const Text('COC'),
+      const Step(
+        title: Text('COC'),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text('Aarav Gupta'),
           ],
         ),
         isActive: true,
         state: StepState.complete,
       ),
-      Step(
-        title: const Text('Logistics'),
+      const Step(
+        title: Text('Logistics'),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text('Abhinav Saxena'),
           ],
         ),
         isActive: true,
         state: StepState.complete,
       ),
-      Step(
-        title: const Text('Pending Approval'),
-        content: const Text('Pending...'),
+      const Step(
+        title: Text('Pending Approval'),
+        content: Text('Pending...'),
         isActive: true,
         state: StepState.indexed, // Default step state for pending
       ),

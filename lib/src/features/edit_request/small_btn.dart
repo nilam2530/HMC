@@ -9,14 +9,14 @@ class CustomSmallButton extends StatelessWidget {
   final EdgeInsets padding;
 
   const CustomSmallButton({
-    Key? key,
+    super.key,
     required this.label,
     required this.onPressed,
     this.color = Colors.blue,
     this.width = 187,
     this.height = 41,
     this.padding = const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class CustomSmallButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         label,
-        style: TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white),
       ),
     );
   }

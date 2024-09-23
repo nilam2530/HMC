@@ -37,8 +37,8 @@ class DataTableWidgetState extends State<DataTableWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final _paginatedRequests = _requests.skip(_currentPage * _rowsPerPage).take(_rowsPerPage).toList();
-    final _totalPages = (_requests.length / _rowsPerPage).ceil();
+    final paginatedRequests = _requests.skip(_currentPage * _rowsPerPage).take(_rowsPerPage).toList();
+    final totalPages = (_requests.length / _rowsPerPage).ceil();
 
     return Column(
       children: [
@@ -46,9 +46,9 @@ class DataTableWidgetState extends State<DataTableWidget> {
           child: SingleChildScrollView(
             child: Column(
               children: List.generate(
-                _paginatedRequests.length,
+                paginatedRequests.length,
                     (index) {
-                  final request = _paginatedRequests[index];
+                  final request = paginatedRequests[index];
                   final actualIndex = _currentPage * _rowsPerPage + index;
                   final isExpanded = _expandedRows.contains(actualIndex);
 
@@ -98,7 +98,7 @@ class DataTableWidgetState extends State<DataTableWidget> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Page ${_currentPage + 1} of $_totalPages'),
+              Text('Page ${_currentPage + 1} of $totalPages'),
               Row(
                 children: [
                   IconButton(
@@ -113,7 +113,7 @@ class DataTableWidgetState extends State<DataTableWidget> {
                   ),
                   IconButton(
                     icon: const Icon(Icons.arrow_forward_ios),
-                    onPressed: _currentPage < _totalPages - 1
+                    onPressed: _currentPage < totalPages - 1
                         ? () {
                       setState(() {
                         _currentPage++;

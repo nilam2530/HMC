@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class DateRangePickerWidget extends StatefulWidget {
+  const DateRangePickerWidget({super.key});
+
   @override
-  _DateRangePickerWidgetState createState() => _DateRangePickerWidgetState();
+  DateRangePickerWidgetState createState() => DateRangePickerWidgetState();
 }
 
-class _DateRangePickerWidgetState extends State<DateRangePickerWidget> {
+class DateRangePickerWidgetState extends State<DateRangePickerWidget> {
   DateTimeRange? _selectedDateRange;
 
   Future<void> _selectDateRange(BuildContext context) async {
@@ -32,13 +34,13 @@ class _DateRangePickerWidgetState extends State<DateRangePickerWidget> {
           onTap: () => _selectDateRange(context),
           child: Row(
             children: [
-              Icon(Icons.arrow_downward),
-              SizedBox(width: 8),
+              const Icon(Icons.arrow_downward),
+              const SizedBox(width: 8),
               Text(
                 _selectedDateRange == null
                     ? 'Select Date Range'
                     : '${_selectedDateRange!.start.toLocal()} - ${_selectedDateRange!.end.toLocal()}',
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
             ],
           ),

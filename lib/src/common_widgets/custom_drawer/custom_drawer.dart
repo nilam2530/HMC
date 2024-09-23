@@ -55,6 +55,7 @@ class SideMenuWidget extends StatelessWidget {
   }
 }
 
+// Define MenuEntry Widget
 class MenuEntry extends StatelessWidget {
   final IconData icon;
   final String title;

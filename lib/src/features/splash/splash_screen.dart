@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:web_responsive_flutter/src/app_configs/app_images.dart';
 import 'package:web_responsive_flutter/src/features/authentication/login/login_screen.dart';
 
@@ -25,7 +24,7 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       decoration: const BoxDecoration(
           image: DecorationImage(
         image: AssetImage(

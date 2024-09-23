@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../app_configs/app_colors.dart';
-import '../app_configs/app_images.dart';
 
 class SummaryCard extends StatelessWidget {
   final String imagePath;

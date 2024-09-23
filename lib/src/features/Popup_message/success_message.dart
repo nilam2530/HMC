@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SuccessMessage extends StatelessWidget {
-  const SuccessMessage({Key? key}) : super(key: key);
+  const SuccessMessage({super.key});
 
   @override
   Widget build(BuildContext context) {
