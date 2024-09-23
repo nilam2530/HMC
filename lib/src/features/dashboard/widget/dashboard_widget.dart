@@ -8,6 +8,7 @@ import '../../../common_widgets/summary_card.dart';
 class DashboardWidget extends StatefulWidget {
   const DashboardWidget({super.key});
 
+
   @override
   State<DashboardWidget> createState() => _DashboardWidgetState();
 }
@@ -17,11 +18,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
   bool isExpanded = false;
   final LayerLink _layerLink = LayerLink();
   OverlayEntry? _overlayEntry;
-
-  final _formKey = GlobalKey<FormState>();
-  DateTimeRange? _dateRange;
-  String? _modeOfTransportation = 'All';
-  String? _status = 'All';
   final _dateController = TextEditingController();
   final _timeController = TextEditingController();
 
@@ -67,8 +63,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double drawerWidth = isDrawerOpen ? screenWidth * 0.3 : screenWidth * 0.2;
 
     return Scaffold(
       body: LayoutBuilder(
@@ -102,7 +96,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
     );
   }
 
-  Row _buildHeader(BuildContext context) {
+  Row _buildHeader( context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -329,9 +323,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
 
   void _toggleDropdown(BuildContext context) {
     if (isExpanded) {
+      // Remove the overlay when it's expanded
       _overlayEntry?.remove();
-      _overlayEntry = null;
+      _overlayEntry = null; // Reset to prevent it from being removed again
     } else {
+      // Create and insert a new overlay entry
       _overlayEntry = _createOverlayEntry(context);
       Overlay.of(context).insert(_overlayEntry!);
     }
@@ -398,9 +394,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
           const SizedBox(height: 8),
           ElevatedButton(
             onPressed: () {
-              print('Apply filter with:');
-              print('Mode: $_selectedMode');
-              print('Status: $_selectedStatus');
               _toggleDropdown(context); // Close the dropdown after applying
             },
             child: const Text('Apply'),
@@ -410,146 +403,5 @@ class _DashboardWidgetState extends State<DashboardWidget> {
     );
   }
 
-  Widget _showDropdown(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              _presentDatePicker(context);
-            },
-            child: Text(_selectedDate != null
-                ? '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}'
-                : 'Select Date'),
-          ),
-          const SizedBox(height: 20),
-          DropdownButton<String>(
-            value: _selectedMode,
-            hint: const Text('Mode of Transportation'),
-            items: <String>['Car', 'Bus', 'Train']
-                .map((String value) => DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    ))
-                .toList(),
-            onChanged: (String? newValue) {
-              setState(() {
-                _selectedMode = newValue;
-              });
-            },
-          ),
-          const SizedBox(height: 20),
-          DropdownButton<String>(
-            value: _selectedStatus,
-            hint: const Text('Status'),
-            items: <String>['Pending', 'Completed']
-                .map((String value) => DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    ))
-                .toList(),
-            onChanged: (String? newValue) {
-              setState(() {
-                _selectedStatus = newValue;
-              });
-            },
-          ),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              // Handle apply button press
-              print('Selected Date: $_selectedDate');
-              print('Selected Mode: $_selectedMode');
-              print('Selected Status: $_selectedStatus');
-            },
-            child: const Text('Apply'),
-          ),
-        ],
-      ),
-    );
-  }
 
-  void _presentDatePicker(BuildContext context) {
-    showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
-    ).then((pickedDate) {
-      if (pickedDate == null) return;
-      setState(() {
-        _selectedDate = pickedDate;
-      });
-    });
-  }
-
-// Helper widget for Date Range Picker
-  Widget _buildDateRangePicker(BuildContext context) {
-    return TextFormField(
-      controller: _dateController,
-      readOnly: true,
-      decoration: const InputDecoration(
-        labelText: 'Date Range',
-        suffixIcon: Icon(Icons.calendar_today),
-      ),
-      onTap: () async {
-        final DateTimeRange? selectedRange = await showDateRangePicker(
-          context: context,
-          firstDate: DateTime(2000),
-          lastDate: DateTime(2101),
-          initialDateRange: _dateRange,
-        );
-        if (selectedRange != null) {
-          setState(() {
-            _dateRange = selectedRange;
-            _dateController.text =
-                '${DateFormat('d MMM yyyy').format(selectedRange.start)} - ${DateFormat('d MMM yyyy').format(selectedRange.end)}';
-          });
-        }
-      },
-    );
-  }
-
-// Helper widget for Time Picker
-  Widget _buildTimePicker(BuildContext context) {
-    return TextFormField(
-      controller: _timeController,
-      readOnly: true,
-      decoration: const InputDecoration(
-        labelText: 'Select Time',
-        suffixIcon: Icon(Icons.access_time),
-      ),
-      onTap: () async {
-        final TimeOfDay? selectedTime = await showTimePicker(
-          context: context,
-          initialTime: TimeOfDay.now(),
-        );
-        if (selectedTime != null) {
-          setState(() {
-            _timeController.text = selectedTime.format(context);
-          });
-        }
-      },
-    );
-  }
-
-// Helper widget for Dropdown Menu
-  Widget _buildDropdown<T>({
-    required String label,
-    required T value,
-    required List<T> items,
-    required ValueChanged<T?> onChanged,
-  }) {
-    return DropdownButtonFormField<T>(
-      value: value,
-      decoration: InputDecoration(
-        labelText: label,
-      ),
-      items: items
-          .map((e) => DropdownMenuItem(value: e, child: Text(e.toString())))
-          .toList(),
-      onChanged: onChanged,
-    );
-  }
 }

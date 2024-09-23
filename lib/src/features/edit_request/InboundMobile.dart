@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 
 class InboundMobileEdit extends StatefulWidget {
+  const InboundMobileEdit({super.key});
+
   @override
   State<InboundMobileEdit> createState() => _InboundMobileEditState();
 }
 
 class _InboundMobileEditState extends State<InboundMobileEdit> {
-  final _formKey = GlobalKey<FormState>();
-
   // Dropdown values
   String? _section;
-
-  String? _invoiceValue;
-
   String? _modeOfTransportation;
-
   // Text field controllers
   final _pickupAddressController = TextEditingController();
 
@@ -40,11 +36,7 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
 
   final _specialInstructionsController = TextEditingController();
 
-  final _commentsController = TextEditingController();
-
   final _invoiceValueController = TextEditingController();
-
-  final _attachmentController = TextEditingController();
 
   // Date picker
   DateTime? _pickupDate;
@@ -54,14 +46,14 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
     return ListView(
       children: [
         // Inbound Request
-        Text(
+        const Text(
           'Add Inbound Request',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
 
         // Transport Details
-        Text(
+        const Text(
           'Transport Details',
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
@@ -77,19 +69,19 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Section',
                             style: TextStyle(fontSize: 12),
                           ),
                           DropdownButtonFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: 'Select Section',
                             ),
                             value: _section,
                             onChanged: (value) {
                               setState(() {
-                                _section = value as String?;
+                                _section = value;
                               });
                             },
                             items: [
@@ -107,19 +99,19 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Pickup Address',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _pickupAddressController,
@@ -138,12 +130,12 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Pickup Pincode',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _pickupPincodeController,
@@ -152,19 +144,19 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Destination Address',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _destinationAddressController,
@@ -183,12 +175,12 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Destination Pincode',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _destinationPincodeController,
@@ -197,19 +189,19 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Approx Weight',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: '0 kgft',
                             ),
@@ -229,12 +221,12 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Invoice Value',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _invoiceValueController,
@@ -243,26 +235,26 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Mode of Transportation ',
                             style: TextStyle(fontSize: 12),
                           ),
                           DropdownButtonFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: 'Select mode',
                             ),
                             value: _modeOfTransportation,
                             onChanged: (value) {
                               setState(() {
-                                _modeOfTransportation = value as String?;
+                                _modeOfTransportation = value;
                               });
                             },
                             items: [
@@ -290,12 +282,12 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Pickup Date',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               suffixIcon: Icon(Icons.calendar_today),
                               hintText: 'dd-mm-yyyy',
@@ -328,7 +320,7 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
         ),
 
         // Pickup Details
-        Text(
+        const Text(
           'Pickup Details',
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
@@ -344,12 +336,12 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Contact Person Name',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _contactPersonNameController,
@@ -358,19 +350,19 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Contact Person Mobile Number',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _contactPersonMobileController,
@@ -389,12 +381,12 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Supplier Name',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _supplierNameController,
@@ -410,7 +402,7 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
         ),
 
         // Package Details
-        Text(
+        const Text(
           'Package Details',
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
@@ -426,12 +418,12 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Number of Packages',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _numberOfPackagesController,
@@ -440,19 +432,19 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Package Dimensions',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _packageDimensionsController,
@@ -471,12 +463,12 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Special Instructions',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _specialInstructionsController,
@@ -485,19 +477,19 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Document/PO Number',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _documentPoNumberController,
@@ -516,7 +508,7 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Attachment',
                             style: TextStyle(fontSize: 12),
                           ),
@@ -534,21 +526,21 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                                     color: Colors
                                         .grey), // Changed the border color to a light grey
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
+                                    const BorderRadius.all(Radius.circular(5)),
                               ),
-                              child: Row(
+                              child: const Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: EdgeInsets.all(10.0),
                                     child: Text(
                                       'Upload File',
                                       style: TextStyle(color: Colors.grey),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: EdgeInsets.all(10.0),
                                     child: Icon(Icons.upload_file),
                                   ),
                                 ],
@@ -559,19 +551,19 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Comments',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5)),
@@ -579,7 +571,7 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                               filled: true,
                               fillColor: Colors.white,
                               hintText: 'Enter your comment',
-                              contentPadding: const EdgeInsets.all(10.0),
+                              contentPadding: EdgeInsets.all(10.0),
                             ),
                           ),
                         ],
@@ -599,9 +591,9 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                 // Cancel button logic
                 Navigator.pop(context);
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red, // Set the button color to red
@@ -609,7 +601,7 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
               onPressed: () {
                 // Add your submit logic here
               },
-              child: Text(
+              child: const Text(
                 'Submit',
                 style: TextStyle(
                     color: Colors.white), // Set the text color to white

@@ -35,21 +35,21 @@ class _LocationMaainState extends State<LocationMaain> {
   Completer<GoogleMapController> mController = Completer<GoogleMapController>();
 
   Set<Marker> marker = {
-    Marker(
-      markerId: const MarkerId("Marker 1"),
-      position: const LatLng(26.2978, 73.0180),
-      infoWindow: const InfoWindow(
+    const Marker(
+      markerId: MarkerId("Marker 1"),
+      position: LatLng(26.2978, 73.0180),
+      infoWindow: InfoWindow(
         title: "Mehrangarh Fort",
         snippet: "Jodhpur",
       ),
     ),
-    Marker(
-      markerId: const MarkerId("Marker 2"),
-      position: const LatLng(27.3978, 73.0180),
+    const Marker(
+      markerId: MarkerId("Marker 2"),
+      position: LatLng(27.3978, 73.0180),
     ),
-    Marker(
-      markerId: const MarkerId("Marker 3"),
-      position: const LatLng(26.3978, 74.0180),
+    const Marker(
+      markerId: MarkerId("Marker 3"),
+      position: LatLng(26.3978, 74.0180),
     ),
   };
 
@@ -68,16 +68,13 @@ class _LocationMaainState extends State<LocationMaain> {
       );
       var mapController = await mController.future;
       mapController.animateCamera(CameraUpdate.newCameraPosition(currPosition));
-      print('Lat: ${currPos.latitude}, Lng: ${currPos.longitude}');
     } else {
-      print("Location services error: Unable to get your location.");
     }
   }
 
   Future<bool> checkIfGetCurrLoc() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      print("Location services disabled!");
       return false;
     }
 
@@ -99,95 +96,31 @@ class _LocationMaainState extends State<LocationMaain> {
     final isDesktop = Responsive.isDesktop(context);
     final dashBoardProvider = context.watch<DashBoardController>();
 
-    return Scaffold(
-      appBar: const CustomAppBar(
-        title: "",
-        actionImages: [
-          AppImages.notification,
-          AppImages.appBarProfile,
-          AppImages.downArrow,
-        ],
-        imageUrl: AppImages.heroAppBar,
-      ),
-      backgroundColor: Colors.white,
-      drawer: !isDesktop
-          ? SizedBox(
-              width: 250,
-              child: SideMenuWidget(
-                menuItems: dashBoardProvider.menuItems,
-                onItemSelected: (index) {
-                  dashBoardProvider.handleMenuItemSelected(index, context);
-                },
-                isDrawerOpen: dashBoardProvider.isDrawerOpen,
-                toggleDrawer: dashBoardProvider.toggleDrawer,
-              ),
-            )
-          : null,
-      endDrawer: Responsive.isMobile(context)
-          ? SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: const Text(""),
-            )
-          : null,
-      body: Column(
-        children: [
-          const Divider(
-            color: AppColors.lightGrey,
-            thickness: 1,
-            height: 1,
-          ),
-          Expanded(
-            child: SafeArea(
-              child: Row(
-                children: [
-                  if (isDesktop)
-                    Expanded(
-                      flex: 2,
-                      child: SideMenuWidget(
-                        menuItems: dashBoardProvider.menuItems,
-                        onItemSelected: (index) {
-                          dashBoardProvider.handleMenuItemSelected(
-                              index, context);
-                        },
-                        isDrawerOpen: dashBoardProvider.isDrawerOpen,
-                        toggleDrawer: dashBoardProvider.toggleDrawer,
-                      ),
-                    ),
-                  Expanded(
-                    flex: 9,
-                    child: GoogleMap(
-                      onMapCreated: (loadedController) {
-                        if (!mController.isCompleted) {
-                          mController.complete(loadedController);
-                        }
-                      },
-                      mapType: MapType.satellite,
-                      markers: marker,
-                      myLocationEnabled: true,
-                      myLocationButtonEnabled: true,
-                      onTap: (loc) {
-                        setState(() {
-                          marker.add(Marker(
-                            markerId: MarkerId(
-                                "New_${loc.latitude}_${loc.longitude}"),
-                            position: loc,
-                          ));
-                        });
-                      },
-                      initialCameraPosition: const CameraPosition(
-                        target: LatLng(26.2978, 73.0180),
-                        zoom: 19,
-                        tilt: 85,
-                        bearing: 135,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+    return  GoogleMap(
+        onMapCreated: (loadedController) {
+          if (!mController.isCompleted) {
+            mController.complete(loadedController);
+          }
+        },
+        mapType: MapType.satellite,
+        markers: marker,
+        myLocationEnabled: true,
+        myLocationButtonEnabled: true,
+        onTap: (loc) {
+          setState(() {
+            marker.add(Marker(
+              markerId: MarkerId(
+                  "New_${loc.latitude}_${loc.longitude}"),
+              position: loc,
+            ));
+          });
+        },
+        initialCameraPosition: const CameraPosition(
+          target: LatLng(26.2978, 73.0180),
+          zoom: 19,
+          tilt: 85,
+          bearing: 135,
+        ),
+      );
   }
 }

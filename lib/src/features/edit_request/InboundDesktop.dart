@@ -2,50 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:web_responsive_flutter/src/features/edit_request/small_btn.dart';
 
 class InboundDesktopEdit extends StatefulWidget {
+  const InboundDesktopEdit({super.key});
+
   @override
   State<InboundDesktopEdit> createState() => _InboundDesktopEditState();
 }
 
 class _InboundDesktopEditState extends State<InboundDesktopEdit> {
-  final _formKey = GlobalKey<FormState>();
-
   // Dropdown values
   String? _section;
-
-  String? _invoiceValue;
-
   String? _modeOfTransportation;
-
   // Text field controllers
   final _pickupAddressController = TextEditingController();
-
   final _pickupPincodeController = TextEditingController();
-
   final _destinationAddressController = TextEditingController();
-
   final _destinationPincodeController = TextEditingController();
-
   final _approxWeightController = TextEditingController();
-
   final _contactPersonNameController = TextEditingController();
-
   final _contactPersonMobileController = TextEditingController();
-
   final _supplierNameController = TextEditingController();
-
   final _numberOfPackagesController = TextEditingController();
-
   final _packageDimensionsController = TextEditingController();
-
   final _documentPoNumberController = TextEditingController();
-
   final _specialInstructionsController = TextEditingController();
-
-  final _commentsController = TextEditingController();
-
   final _invoiceValueController = TextEditingController();
-
-  final _attachmentController = TextEditingController();
 
   // Date picker
   DateTime? _pickupDate;
@@ -55,14 +35,14 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
     return ListView(
       children: [
         // Inbound Request
-        Text(
+        const Text(
           'Edit Inbound Request',
           style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
 
         // Transport Details
-        Text(
+        const Text(
           'Transport Details',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
@@ -78,19 +58,19 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Section',
                             style: TextStyle(fontSize: 12),
                           ),
                           DropdownButtonFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: 'Select Section',
                             ),
                             value: _section,
                             onChanged: (value) {
                               setState(() {
-                                _section = value as String?;
+                                _section = value;
                               });
                             },
                             items: [
@@ -108,19 +88,19 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Pickup Address',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _pickupAddressController,
@@ -129,19 +109,19 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Pickup Pincode',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _pickupPincodeController,
@@ -160,12 +140,12 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Destination Address',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _destinationAddressController,
@@ -174,19 +154,19 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Destination Pincode',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _destinationPincodeController,
@@ -195,19 +175,19 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Approx Weight',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: '0 kgft',
                             ),
@@ -227,12 +207,12 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Invoice Value',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _invoiceValueController,
@@ -241,26 +221,26 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Mode of Transportation',
                             style: TextStyle(fontSize: 12),
                           ),
                           DropdownButtonFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: 'Select mode',
                             ),
                             value: _modeOfTransportation,
                             onChanged: (value) {
                               setState(() {
-                                _modeOfTransportation = value as String?;
+                                _modeOfTransportation = value;
                               });
                             },
                             items: [
@@ -278,19 +258,19 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Pickup Date',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               suffixIcon: Icon(Icons.calendar_today),
                               hintText: 'dd-mm-yyyy',
@@ -323,7 +303,7 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
         ),
 
         // Pickup Details
-        Text(
+        const Text(
           'Pickup Details',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
@@ -337,12 +317,12 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Contact Person Name',
                         style: TextStyle(fontSize: 12),
                       ),
                       TextFormField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                         ),
                         controller: _contactPersonNameController,
@@ -351,19 +331,19 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                   ),
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Contact Person Mobile Number',
                         style: TextStyle(fontSize: 12),
                       ),
                       TextFormField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                         ),
                         controller: _contactPersonMobileController,
@@ -372,19 +352,19 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                   ),
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Supplier Name',
                         style: TextStyle(fontSize: 12),
                       ),
                       TextFormField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                         ),
                         controller: _supplierNameController,
@@ -398,7 +378,7 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
         ),
 
         // Package Details
-        Text(
+        const Text(
           'Package Details',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
@@ -414,12 +394,12 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Number of Packages',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _numberOfPackagesController,
@@ -428,19 +408,19 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Package Dimensions',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _packageDimensionsController,
@@ -449,19 +429,19 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Special Instructions',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _specialInstructionsController,
@@ -480,12 +460,12 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Document/PO Number',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                             controller: _documentPoNumberController,
@@ -494,14 +474,14 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Attachment',
                             style: TextStyle(fontSize: 12),
                           ),
@@ -519,21 +499,21 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                                     color: Colors
                                         .grey), // Changed the border color to a light grey
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
+                                    const BorderRadius.all(Radius.circular(5)),
                               ),
-                              child: Row(
+                              child: const Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: EdgeInsets.all(10.0),
                                     child: Text(
                                       'Upload File',
                                       style: TextStyle(color: Colors.grey),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: EdgeInsets.all(10.0),
                                     child: Icon(Icons.upload_file),
                                   ),
                                 ],
@@ -544,19 +524,19 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Comments',
                             style: TextStyle(fontSize: 12),
                           ),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5)),
@@ -564,7 +544,7 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                               filled: true,
                               fillColor: Colors.white,
                               hintText: 'Enter your comment',
-                              contentPadding: const EdgeInsets.all(10.0),
+                              contentPadding: EdgeInsets.all(10.0),
                             ),
                           ),
                         ],
@@ -586,7 +566,7 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
               },
               color: Colors.grey, // You can customize the color here
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             CustomSmallButton(
               label: 'Submit',
               onPressed: () {

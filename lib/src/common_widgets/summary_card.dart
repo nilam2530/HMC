@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../app_configs/app_colors.dart';
-import '../app_configs/app_images.dart';
 
 class SummaryCard extends StatelessWidget {
   final String imagePath;
@@ -88,8 +87,9 @@ class SummaryCard extends StatelessWidget {
           // Background image, if provided
           if (bgImg != null)
             Positioned(
-              right: 0,
-              top: 0,
+              right: 10,
+              top: 2,
+
               child: bgImg!,
             ),
         ],

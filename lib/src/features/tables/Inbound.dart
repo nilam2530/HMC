@@ -6,10 +6,10 @@ class Inbound extends StatefulWidget {
   const Inbound({super.key});
 
   @override
-  _InboundState createState() => _InboundState();
+  InboundState createState() => InboundState();
 }
 
-class _InboundState extends State<Inbound> {
+class InboundState extends State<Inbound> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,9 +18,9 @@ class _InboundState extends State<Inbound> {
         child: LayoutBuilder(
           builder: (context, constraints) {
             if (constraints.maxWidth > 800) {
-              return InboundDesktop();
+              return const InboundDesktop();
             } else {
-              return InboundMobile();
+              return const InboundMobile();
             }
           },
         ),
