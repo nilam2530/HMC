@@ -4,7 +4,6 @@ import 'package:web_responsive_flutter/src/app_configs/app_images.dart';
 import 'package:web_responsive_flutter/src/common_widgets/custom_drawer/custom_drawer.dart';
 import 'package:web_responsive_flutter/src/features/dashboard/provider/dashboard_controller.dart';
 import 'package:web_responsive_flutter/src/features/dashboard/widget/dashboard_widget.dart';
-import '../../app_configs/app_colors.dart';
 import '../../common_widgets/custom_appbar/custom_appBar.dart';
 import '../../utils/responsive.dart';
 
@@ -34,7 +33,6 @@ class MainScreen extends StatelessWidget {
           AppImages.downArrow,
         ],
         imageUrl: AppImages.heroAppBar,
-
       ),
       backgroundColor: Colors.white,
       body: Stack(
