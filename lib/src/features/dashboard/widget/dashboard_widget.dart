@@ -215,19 +215,19 @@ class _DashboardWidgetState extends State<DashboardWidget> {
               width: 1.0,
             ),
           ),
-          child: Row(
+          child: const Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: const Icon(Icons.search, size: 20),
+                padding: EdgeInsets.all(5.0),
+                child: Icon(Icons.search, size: 20),
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 0.8),
+                  padding: EdgeInsets.only(top: 0.8),
                   child: TextField(
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       hintText: "Search by request no",
                       border: InputBorder.none,
                     ),
@@ -329,11 +329,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
 
   void _toggleDropdown(BuildContext context) {
     if (isExpanded) {
-      // Remove the overlay when it's expanded
       _overlayEntry?.remove();
-      _overlayEntry = null; // Reset to prevent it from being removed again
+      _overlayEntry = null;
     } else {
-      // Create and insert a new overlay entry
       _overlayEntry = _createOverlayEntry(context);
       Overlay.of(context).insert(_overlayEntry!);
     }
@@ -425,10 +423,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                 ? '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}'
                 : 'Select Date'),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           DropdownButton<String>(
             value: _selectedMode,
-            hint: Text('Mode of Transportation'),
+            hint: const Text('Mode of Transportation'),
             items: <String>['Car', 'Bus', 'Train']
                 .map((String value) => DropdownMenuItem<String>(
                       value: value,
@@ -441,10 +439,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
               });
             },
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           DropdownButton<String>(
             value: _selectedStatus,
-            hint: Text('Status'),
+            hint: const Text('Status'),
             items: <String>['Pending', 'Completed']
                 .map((String value) => DropdownMenuItem<String>(
                       value: value,
@@ -457,7 +455,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
               });
             },
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               // Handle apply button press
@@ -465,7 +463,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
               print('Selected Mode: $_selectedMode');
               print('Selected Status: $_selectedStatus');
             },
-            child: Text('Apply'),
+            child: const Text('Apply'),
           ),
         ],
       ),
