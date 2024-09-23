@@ -84,6 +84,7 @@ class MyApp extends StatelessWidget {
             themeMode: context.watch<ThemeProvider>().themeValue
                 ? ThemeMode.dark
                 : ThemeMode.light,
+
             darkTheme: ThemeData(brightness: Brightness.dark),
             theme: ThemeData(
                 brightness: Brightness.light,

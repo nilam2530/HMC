@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:web_responsive_flutter/src/app_configs/app_colors.dart';
 import 'package:web_responsive_flutter/src/app_configs/app_images.dart';
+import 'package:web_responsive_flutter/src/features/Popup_message/filter.dart';
 import '../../../common_widgets/data_table.dart';
 import '../../../common_widgets/summary_card.dart';
 
@@ -233,21 +234,27 @@ class _DashboardWidgetState extends State<DashboardWidget> {
   Widget _buildFilterButton() {
     return CompositedTransformTarget(
       link: _layerLink,
-      child: Container(
-        height: 35,
-        width: 85,
-        decoration: BoxDecoration(
+      child: GestureDetector(
+        onTap: () {
+          Filter.showFilterDialog(context);
+        },
+        child: Container(
+          height: 35,
+          width: 85,
+          decoration: BoxDecoration(
             border: Border.all(color: AppColors.darkMaron, width: 1),
-            borderRadius: const BorderRadius.all(Radius.circular(12))),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Image.asset(AppImages.filter, height: 16, width: 16),
-            const Text(
-              "Filter",
-              style: TextStyle(fontSize: 14, color: AppColors.darkMaron),
-            )
-          ],
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Image.asset(AppImages.filter, height: 16, width: 16),
+              const Text(
+                "Filter",
+                style: TextStyle(fontSize: 14, color: AppColors.darkMaron),
+              )
+            ],
+          ),
         ),
       ),
     );
