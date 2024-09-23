@@ -15,6 +15,26 @@ class DashBoardController with ChangeNotifier {
     const MenuItemData(title: "View Request", icon: Icons.table_view_outlined),
     const MenuItemData(title: "Location", icon: Icons.table_view_outlined),
   ];
+  final List<String> images = [
+    'assets/images/carousel.png',
+    'assets/images/carousel.png',
+    'assets/images/carousel.png',
+  ];
+  final List<String> texts = [
+    'A masterpiece for the\nmaster',
+    'A masterpiece for the\nmaster',
+    'A masterpiece for the\nmaster',
+  ];
+  final List<String> subTitle = [
+    'Inspired by a vision a tribute to a legacy',
+    'Inspired by a vision a tribute to a legacy',
+    'Inspired by a vision a tribute to a legacy',
+  ];
+  final List<VoidCallback> buttonCallbacks = [
+        () => print('Button 1 clicked'),
+        () => print('Button 2 clicked'),
+        () => print('Button 3 clicked'),
+  ];
 
   void handleMenuItemSelected(int index, BuildContext context) {
     _selectedIndex = index;
