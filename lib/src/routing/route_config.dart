@@ -2,7 +2,6 @@ import 'package:go_router/go_router.dart';
 import 'package:web_responsive_flutter/src/features/admin/Kaizen_loss/add_loss.dart';
 import 'package:web_responsive_flutter/src/features/admin/Kaizen_loss/kaizen_loss_view.dart';
 import 'package:web_responsive_flutter/src/features/admin/kaizen_pillar/kaizen_pillar_view.dart';
-import 'package:web_responsive_flutter/src/features/admin/kaizen_pillar/provider/kaizen_pillar_controller.dart';
 import 'package:web_responsive_flutter/src/features/admin/kaizen_theme/add_theme.dart';
 import 'package:web_responsive_flutter/src/features/admin/kaizen_theme/kaizen_theme_view.dart';
 import 'package:web_responsive_flutter/src/features/authentication/login/login_screen.dart';

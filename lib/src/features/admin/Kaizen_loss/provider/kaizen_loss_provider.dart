@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:web_responsive_flutter/src/models/pillar_model.dart';
 
 import '../../../../models/kaizen_loss_model.dart';
-import '../../../../models/kaizen_pillar_table_model.dart';
 
 class KaizenLossProvider with ChangeNotifier {
   static const int _rowsPerPage = 10;

@@ -8,7 +8,6 @@ import '../../../app_configs/text_styles.dart';
 import '../../../common_widgets/custom_btn/custom_elevated_btn.dart';
 import '../../../common_widgets/custom_data_table/custom_data_table.dart';
 import '../../../models/kaizen_loss_model.dart';
-import '../../../models/kaizen_pillar_table_model.dart';
 
 class KaizenLossView extends StatefulWidget {
   const KaizenLossView({super.key});

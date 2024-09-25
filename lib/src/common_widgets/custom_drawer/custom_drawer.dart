@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:web_responsive_flutter/src/features/dashboard/provider/dashboard_controller.dart';
 import 'package:web_responsive_flutter/src/features/sidebar/controller/sidemenu_controller.dart';
 import 'package:web_responsive_flutter/src/themes/theme_provider.dart';
 

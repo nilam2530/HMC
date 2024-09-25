@@ -7,8 +7,6 @@ import 'package:web_responsive_flutter/src/services/http_interceptor.dart';
 import 'package:web_responsive_flutter/src/services/logger.dart';
 import 'package:web_responsive_flutter/src/services/token_service.dart';
 
-import '../features/dashboard/provider/dashboard_controller.dart';
-
 final getIt = GetIt.instance;
 
 void setupServiceLocator() {
