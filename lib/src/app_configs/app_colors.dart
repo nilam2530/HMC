@@ -17,6 +17,7 @@ class AppColors {
   static const lightBlack = Color(0xFF222222);
   static const backgroundColormain = Color(0xFFFFFFFF);
   static const TxtColor = Color(0xFF272E35);
+  static const greySecondary = Color(0xFF797A8B);
 
   //SummaryCardColors
   static const penDingColors = Color(0xFFFFEFD1);
