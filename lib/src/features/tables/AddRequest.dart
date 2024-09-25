@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:web_responsive_flutter/src/app_configs/app_colors.dart';
-import 'package:web_responsive_flutter/src/app_configs/app_images.dart';
-import 'package:web_responsive_flutter/src/common_widgets/custom_appbar/custom_appBar.dart';
-import 'package:web_responsive_flutter/src/common_widgets/custom_drawer/custom_drawer.dart';
-import 'package:web_responsive_flutter/src/features/dashboard/provider/dashboard_controller.dart';
 import 'package:web_responsive_flutter/src/features/tables/Inbound.dart';
-import 'package:web_responsive_flutter/src/utils/responsive.dart';
 
 class AddRequest extends StatefulWidget {
   const AddRequest({super.key});
@@ -50,38 +43,29 @@ class AddRequestScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDesktop = Responsive.isDesktop(context);
-    final dashBoardProvider = context.watch<DashBoardController>();
-
-    return
-      Column(
-        children: [
-          TabBar(
+    return Column(
+      children: [
+        TabBar(
+          controller: tabController,
+          isScrollable: true,
+          tabs: _tabTitles.map((title) => Tab(text: title)).toList(),
+          labelStyle: const TextStyle(fontSize: 18),
+          unselectedLabelStyle: const TextStyle(fontSize: 18),
+          indicator: const UnderlineTabIndicator(
+            borderSide: BorderSide(color: Colors.red, width: 4.0),
+          ),
+        ),
+        Expanded(
+          child: TabBarView(
             controller: tabController,
-            isScrollable: true,
-            tabs: _tabTitles
-                .map((title) => Tab(text: title))
-                .toList(),
-            labelStyle: const TextStyle(fontSize: 18),
-            unselectedLabelStyle: const TextStyle(fontSize: 18),
-            indicator: const UnderlineTabIndicator(
-              borderSide:
-              BorderSide(color: Colors.red, width: 4.0),
-            ),
+            children: const [
+              Inbound(),
+              Center(child: Text('Outbound Request content')),
+              Center(child: Text('In-plant Material Movement Request content')),
+            ],
           ),
-          Expanded(
-            child: TabBarView(
-              controller: tabController,
-              children: const [
-                Inbound(),
-                Center(child: Text('Outbound Request content')),
-                Center(
-                    child: Text(
-                        'In-plant Material Movement Request content')),
-              ],
-            ),
-          ),
-        ],
-      );
+        ),
+      ],
+    );
   }
 }

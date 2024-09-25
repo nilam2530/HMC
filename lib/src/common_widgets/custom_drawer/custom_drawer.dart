@@ -18,44 +18,34 @@ class SideMenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      width: isDrawerOpen ? 256 : 72, // Animate width change
+      width: isDrawerOpen ? 256 : 72,
+      // Animate width change
       duration: const Duration(milliseconds: 200),
-      height: 1089, // Fixed height as per your requirement
-      decoration: BoxDecoration(
-        color: const Color(0xFF171821),
-        border: const Border(
+      height: 1089,
+      decoration: const BoxDecoration(
+        color: Color(0xFF171821),
+        border: Border(
           right: BorderSide(color: Colors.grey, width: 1),
         ),
       ),
-      child: Column(
-        children: [
-          IconButton(
-            icon: Icon(isDrawerOpen ? Icons.arrow_back : Icons.menu),
-            onPressed: toggleDrawer,
-            color: Colors.white,
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: menuItems.length,
-              itemBuilder: (context, index) {
-                final menuItem = menuItems[index];
-                return MenuEntry(
-                  icon: menuItem.icon,
-                  title: menuItem.title,
-                  isSelected: false,
-                  isDrawerOpen: isDrawerOpen, // Pass isDrawerOpen down
-                  onTap: () => onItemSelected(index),
-                );
-              },
-            ),
-          ),
-        ],
+      child: ListView.builder(
+        itemCount: menuItems.length,
+        itemBuilder: (context, index) {
+          final menuItem = menuItems[index];
+          return MenuEntry(
+            icon: menuItem.icon,
+            title: menuItem.title,
+            isSelected: false,
+            isDrawerOpen: isDrawerOpen,
+            // Pass isDrawerOpen down
+            onTap: () => onItemSelected(index),
+          );
+        },
       ),
     );
   }
 }
 
-// Define MenuEntry Widget
 class MenuEntry extends StatelessWidget {
   final IconData icon;
   final String title;

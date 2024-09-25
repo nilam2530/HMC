@@ -8,7 +8,6 @@ class InboundMobile extends StatefulWidget {
 }
 
 class _InboundMobileState extends State<InboundMobile> {
-
   // Dropdown values
   String? _section;
 
@@ -40,7 +39,6 @@ class _InboundMobileState extends State<InboundMobile> {
   final _specialInstructionsController = TextEditingController();
 
   final _invoiceValueController = TextEditingController();
-
 
   // Date picker
   DateTime? _pickupDate;
@@ -526,9 +524,8 @@ class _InboundMobileState extends State<InboundMobile> {
                               height:
                                   40, // Adjust the height to match the other boxes
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors
-                                        .grey), // Changed the border color to a light grey
+                                border: Border.all(color: Colors.grey),
+                                // Changed the border color to a light grey
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(5)),
                               ),

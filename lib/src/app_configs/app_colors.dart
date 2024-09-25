@@ -13,6 +13,7 @@ class AppColors {
   static const dark5Grey = Color(0xFF1B242C);
   static const dark6Grey = Color(0xFF9EA8B3);
   static const lightBlack = Color(0xFF222222);
+  static const backgroundColormain = Color(0xFFFFFFFF);
 
   //SummaryCardColors
   static const penDingColors = Color(0xFFFFEFD1);
@@ -76,6 +77,7 @@ class AppColors {
 
   static const gradientColorsIcons3 = Color(0xFF5e72e4);
   static const gradientColorsIcons4 = Color(0xFF825ee4);
+  static const sucessful = Color(0xFF4CAF50);
 
   static const gradientColorsIcons5 = Color(0xFF2dce89);
   static const gradientColorsIcons6 = Color(0xFF2dcecc);

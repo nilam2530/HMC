@@ -6,6 +6,7 @@ class DashBoardController with ChangeNotifier {
   bool _isDrawerOpen = false;
 
   int get selectedIndex => _selectedIndex;
+
   bool get isDrawerOpen => _isDrawerOpen;
 
   final List<MenuItemData> menuItems = [
@@ -14,6 +15,8 @@ class DashBoardController with ChangeNotifier {
     const MenuItemData(title: "Edit Request", icon: Icons.table_view_outlined),
     const MenuItemData(title: "View Request", icon: Icons.table_view_outlined),
     const MenuItemData(title: "Location", icon: Icons.table_view_outlined),
+    const MenuItemData(title: "Kiazen Panel", icon: Icons.table_view_outlined),
+    const MenuItemData(title: "Kaizen Theme", icon: Icons.dashboard),
   ];
 
   void handleMenuItemSelected(int index, BuildContext context) {
@@ -36,6 +39,8 @@ class DashBoardController with ChangeNotifier {
       case 4:
         GoRouter.of(context).go('/location');
         break;
+      case 5:
+        GoRouter.of(context).go('/shivendra');
       default:
         break;
     }

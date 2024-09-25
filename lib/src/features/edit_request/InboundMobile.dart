@@ -11,6 +11,7 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
   // Dropdown values
   String? _section;
   String? _modeOfTransportation;
+
   // Text field controllers
   final _pickupAddressController = TextEditingController();
 
@@ -522,9 +523,8 @@ class _InboundMobileEditState extends State<InboundMobileEdit> {
                               height:
                                   40, // Adjust the height to match the other boxes
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors
-                                        .grey), // Changed the border color to a light grey
+                                border: Border.all(color: Colors.grey),
+                                // Changed the border color to a light grey
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(5)),
                               ),
