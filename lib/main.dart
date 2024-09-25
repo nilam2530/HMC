@@ -15,6 +15,7 @@ import 'package:web_responsive_flutter/l10n/localixation.dart';
 import 'package:web_responsive_flutter/src/common_widgets/datetime/datetime_provider.dart';
 import 'package:web_responsive_flutter/src/features/authentication/login/provider/login_screen_provider.dart';
 import 'package:web_responsive_flutter/src/features/dashboard/provider/dashboard_controller.dart';
+import 'package:web_responsive_flutter/src/features/sidebar/controller/sidemenu_controller.dart';
 import 'package:web_responsive_flutter/src/models/vistor_model.dart';
 import 'package:web_responsive_flutter/src/routing/route_config.dart';
 import 'package:web_responsive_flutter/src/services/service_locator.dart';
@@ -72,7 +73,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => LocalizationProvider()),
         ChangeNotifierProvider(create: (_) => DateTimeProvider()),
-        ChangeNotifierProvider(create: (_) => DashBoardController()),
+        ChangeNotifierProvider(create: (_) => SidemeuController()),
       ],
       child: Consumer2<ThemeProvider, LocalizationProvider>(
         builder: (context, themeProvider, localizationProvider, child) {
@@ -81,14 +82,15 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             restorationScopeId: 'app',
             onGenerateTitle: (BuildContext context) => 'My Pro',
-            themeMode: context.watch<ThemeProvider>().themeValue
-                ? ThemeMode.dark
-                : ThemeMode.light,
+            // themeMode: context.watch<ThemeProvider>().themeValue
+            //     ? ThemeMode.dark
+            //     : ThemeMode.light,
+            themeMode: context.watch<ThemeProvider>().themeMode,
             darkTheme: ThemeData(brightness: Brightness.dark),
             theme: ThemeData(
                 brightness: Brightness.light,
                 colorScheme: ColorScheme.fromSeed(
-                  seedColor: Colors.deepPurple,
+                    seedColor: Colors.black,primary: Colors.black
                 ),
                 useMaterial3: true),
             localizationsDelegates: const [

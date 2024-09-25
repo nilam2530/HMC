@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:web_responsive_flutter/src/common_widgets/provider/theme_provider.dart';
+import 'package:web_responsive_flutter/src/features/sidebar/controller/sidemenu_controller.dart';
 import 'package:web_responsive_flutter/src/routing/route_config.dart';
 import 'package:web_responsive_flutter/src/services/api_service.dart';
 import 'package:web_responsive_flutter/src/services/http_interceptor.dart';
@@ -20,5 +21,5 @@ void setupServiceLocator() {
 
   // Register Theme provider
   getIt.registerLazySingleton(() => ThemeProvider());
-  getIt.registerLazySingleton(() => DashBoardController());
+  getIt.registerLazySingleton(() => SidemeuController());
 }

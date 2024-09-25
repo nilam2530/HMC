@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:web_responsive_flutter/src/app_configs/app_colors.dart';
+
 import '../app_configs/app_images.dart';
 import '../models/data_table_model.dart';
 
@@ -14,7 +16,7 @@ class DataTableWidgetState extends State<DataTableWidget> {
   final Set<int> _expandedRows = <int>{};
   final List<DataTableModel> _requests = List.generate(
     30,
-        (index) => DataTableModel(
+    (index) => DataTableModel(
       date: "20 Jun 2024",
       requestNo: "LRIB${index.toString().padLeft(5, '0')}",
       type: "Inbound",
@@ -22,7 +24,6 @@ class DataTableWidgetState extends State<DataTableWidget> {
       status: "Pending Request",
     ),
   );
-
   int _currentPage = 0;
 
   void _toggleRowExpansion(int index) {
@@ -37,96 +38,138 @@ class DataTableWidgetState extends State<DataTableWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final paginatedRequests = _requests.skip(_currentPage * _rowsPerPage).take(_rowsPerPage).toList();
+    final paginatedRequests =
+        _requests.skip(_currentPage * _rowsPerPage).take(_rowsPerPage).toList();
     final totalPages = (_requests.length / _rowsPerPage).ceil();
 
-    return Column(
-      children: [
-        Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              children: List.generate(
-                paginatedRequests.length,
-                    (index) {
-                  final request = paginatedRequests[index];
-                  final actualIndex = _currentPage * _rowsPerPage + index;
-                  final isExpanded = _expandedRows.contains(actualIndex);
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: AppColors.dark3Grey,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Sr No.", style: _textStyle()))),
+                Expanded(
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Date", style: _textStyle()))),
+                Expanded(
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Request No.", style: _textStyle()))),
+                Expanded(
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Type", style: _textStyle()))),
+                Expanded(
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child:
+                            Text("Mode Of Transportation", style: _textStyle()))),
+                Expanded(
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Status", style: _textStyle()))),
+                Expanded(
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Actions", style: _textStyle()))),
+              ],
+            ),
+          ),
 
-                  return Column(
-                    children: [
-                      DataRowWidget(
-                        index: actualIndex,
-                        request: request,
-                        isExpanded: isExpanded,
-                        onTap: () => _toggleRowExpansion(actualIndex),
-                      ),
-                      if (isExpanded)
-                        Container(
-                          width: double.maxFinite,
-                          padding: const EdgeInsets.all(16),
-                          color: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: SingleChildScrollView(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  _buildRequestInfoColumn(),
-                                  _buildPickupAndPackageDetailsColumn(),
-                                ],
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: List.generate(
+                  paginatedRequests.length,
+                  (index) {
+                    final request = paginatedRequests[index];
+                    final actualIndex = _currentPage * _rowsPerPage + index;
+                    final isExpanded = _expandedRows.contains(actualIndex);
+                    return Column(
+                      children: [
+                        DataRowWidget(
+                          index: actualIndex,
+                          request: request,
+                          isExpanded: isExpanded,
+                          onTap: () => _toggleRowExpansion(actualIndex),
+                        ),
+                        if (isExpanded)
+                          Container(
+                            width: double.maxFinite,
+                            color: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.all(6.0),
+                              child: SingleChildScrollView(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    _buildRequestInfoColumn(),
+                                    _buildPickupAndPackageDetailsColumn(),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
+                        // Divider between rows
+                        Divider(
+                          thickness: 1,
+                          height: 1,
+                          color: Colors.grey[300],
                         ),
-                      // Divider between rows
-                      Divider(
-                        thickness: 1,
-                        height: 1,
-                        color: Colors.grey[300],
-                      ),
-                    ],
-                  );
-                },
+                      ],
+                    );
+                  },
+                ),
               ),
             ),
           ),
-        ),
-        // Pagination controls and index count display
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Page ${_currentPage + 1} of $totalPages'),
-              Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back_ios),
-                    onPressed: _currentPage > 0
-                        ? () {
-                      setState(() {
-                        _currentPage--;
-                      });
-                    }
-                        : null,
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.arrow_forward_ios),
-                    onPressed: _currentPage < totalPages - 1
-                        ? () {
-                      setState(() {
-                        _currentPage++;
-                      });
-                    }
-                        : null,
-                  ),
-                ],
-              ),
-            ],
+          // Pagination controls and index count display
+          Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Page ${_currentPage + 1} of $totalPages'),
+                Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back_ios),
+                      onPressed: _currentPage > 0
+                          ? () {
+                              setState(() {
+                                _currentPage--;
+                              });
+                            }
+                          : null,
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.arrow_forward_ios),
+                      onPressed: _currentPage < totalPages - 1
+                          ? () {
+                              setState(() {
+                                _currentPage++;
+                              });
+                            }
+                          : null,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -183,6 +226,18 @@ class DataTableWidgetState extends State<DataTableWidget> {
       ),
     );
   }
+
+  // Reusable TextStyle method
+  TextStyle _textStyle() {
+    return TextStyle(
+      fontFamily: 'Gotham-Bold',
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+      height: 18 / 14,
+      // line-height calculated as a multiplier of font size
+      color: AppColors.lightBlack, // Adjust color as needed
+    );
+  }
 }
 
 Widget _buildInfoRow(String label, String value) {
@@ -193,6 +248,7 @@ Widget _buildInfoRow(String label, String value) {
         child: Text(
           label,
           style: const TextStyle(
+            color: AppColors.darkGrey,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -200,7 +256,11 @@ Widget _buildInfoRow(String label, String value) {
       const SizedBox(width: 40),
       const Text(":"),
       const SizedBox(width: 20),
-      Text(value),
+      Text(value,style: TextStyle(
+         // color: AppColors.TxtColor
+        color: AppColors.darkGrey,
+        fontWeight: FontWeight.bold,
+      ),),
     ],
   );
 }
@@ -223,39 +283,43 @@ class DataRowWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        color: isExpanded ? Colors.blueGrey[50] : Colors.white,
-        child: Row(
-          children: [
-            Expanded(child: Text("${index + 1}")),
-            Expanded(child: Text(request.date)),
-            Expanded(child: Text(request.requestNo)),
-            Expanded(child: Text(request.type)),
-            Expanded(child: Text(request.modeOfTransportation)),
-            Expanded(child: Text(request.status)),
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: GestureDetector(
-                      onTap: onTap,
-                      child: Image.asset(
-                        AppImages.downArrowTable,
-                        height: 20,
-                        width: 20,
-                        color: isExpanded ? Colors.red : null,
+      child: Column(
+        children: [
+          Container(
+            color: isExpanded ? Colors.blueGrey[50] : Colors.white,
+            child: Row(
+              children: [
+                Expanded(child: Text("${index + 1}")),
+                Expanded(child: Text(request.date)),
+                Expanded(child: Text(request.requestNo)),
+                Expanded(child: Text(request.type)),
+                Expanded(child: Text(request.modeOfTransportation)),
+                Expanded(child: Text(request.status)),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        child: GestureDetector(
+                          onTap: onTap,
+                          child: Image.asset(
+                            AppImages.downArrowTable,
+                            height: 20,
+                            width: 20,
+                            color: isExpanded ? Colors.red : null,
+                          ),
+                        ),
                       ),
-                    ),
+                      const SizedBox(width: 8),
+                      const Icon(Icons.edit),
+                    ],
                   ),
-                  const SizedBox(width: 8),
-                  const Icon(Icons.edit),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

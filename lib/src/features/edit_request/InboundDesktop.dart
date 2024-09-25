@@ -12,6 +12,7 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
   // Dropdown values
   String? _section;
   String? _modeOfTransportation;
+
   // Text field controllers
   final _pickupAddressController = TextEditingController();
   final _pickupPincodeController = TextEditingController();
@@ -495,9 +496,8 @@ class _InboundDesktopEditState extends State<InboundDesktopEdit> {
                               height:
                                   40, // Adjust the height to match the other boxes
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors
-                                        .grey), // Changed the border color to a light grey
+                                border: Border.all(color: Colors.grey),
+                                // Changed the border color to a light grey
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(5)),
                               ),

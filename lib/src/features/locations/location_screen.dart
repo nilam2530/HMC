@@ -1,14 +1,8 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:web_responsive_flutter/src/app_configs/app_images.dart';
-import 'package:web_responsive_flutter/src/features/dashboard/provider/dashboard_controller.dart';
-import '../../app_configs/app_colors.dart';
-import '../../common_widgets/custom_appbar/custom_appBar.dart';
-import '../../common_widgets/custom_drawer/custom_drawer.dart';
-import '../../utils/responsive.dart';
 
 class LocationScreen extends StatefulWidget {
   const LocationScreen({super.key});
@@ -68,8 +62,7 @@ class _LocationMaainState extends State<LocationMaain> {
       );
       var mapController = await mController.future;
       mapController.animateCamera(CameraUpdate.newCameraPosition(currPosition));
-    } else {
-    }
+    } else {}
   }
 
   Future<bool> checkIfGetCurrLoc() async {
@@ -93,34 +86,30 @@ class _LocationMaainState extends State<LocationMaain> {
 
   @override
   Widget build(BuildContext context) {
-    final isDesktop = Responsive.isDesktop(context);
-    final dashBoardProvider = context.watch<DashBoardController>();
-
-    return  GoogleMap(
-        onMapCreated: (loadedController) {
-          if (!mController.isCompleted) {
-            mController.complete(loadedController);
-          }
-        },
-        mapType: MapType.satellite,
-        markers: marker,
-        myLocationEnabled: true,
-        myLocationButtonEnabled: true,
-        onTap: (loc) {
-          setState(() {
-            marker.add(Marker(
-              markerId: MarkerId(
-                  "New_${loc.latitude}_${loc.longitude}"),
-              position: loc,
-            ));
-          });
-        },
-        initialCameraPosition: const CameraPosition(
-          target: LatLng(26.2978, 73.0180),
-          zoom: 19,
-          tilt: 85,
-          bearing: 135,
-        ),
-      );
+    return GoogleMap(
+      onMapCreated: (loadedController) {
+        if (!mController.isCompleted) {
+          mController.complete(loadedController);
+        }
+      },
+      mapType: MapType.satellite,
+      markers: marker,
+      myLocationEnabled: true,
+      myLocationButtonEnabled: true,
+      onTap: (loc) {
+        setState(() {
+          marker.add(Marker(
+            markerId: MarkerId("New_${loc.latitude}_${loc.longitude}"),
+            position: loc,
+          ));
+        });
+      },
+      initialCameraPosition: const CameraPosition(
+        target: LatLng(26.2978, 73.0180),
+        zoom: 19,
+        tilt: 85,
+        bearing: 135,
+      ),
+    );
   }
 }

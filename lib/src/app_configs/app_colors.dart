@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+
+
   static const dividerColor = Color(0xFF7D8B99);
   static const btnRedColor = Color(0xFFEE2326);
   static const darBlack = Color(0xFF000000);
@@ -13,6 +15,8 @@ class AppColors {
   static const dark5Grey = Color(0xFF1B242C);
   static const dark6Grey = Color(0xFF9EA8B3);
   static const lightBlack = Color(0xFF222222);
+  static const backgroundColormain = Color(0xFFFFFFFF);
+  static const TxtColor = Color(0xFF272E35);
 
   //SummaryCardColors
   static const penDingColors = Color(0xFFFFEFD1);
