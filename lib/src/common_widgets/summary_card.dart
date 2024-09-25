@@ -38,7 +38,7 @@ class SummaryCard extends StatelessWidget {
           builder: (context, constraints) {
             final cardWidth = constraints.maxWidth < 200
                 ? constraints.maxWidth * 0.9
-                : 272.0; // Fixed width for larger screens
+                : 272.0;
             const cardHeight = 110.0;
 
             return Container(

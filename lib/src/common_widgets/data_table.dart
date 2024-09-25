@@ -47,7 +47,7 @@ class DataTableWidgetState extends State<DataTableWidget> {
       child: Column(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.dark3Grey,
             ),
             child: Row(
@@ -229,7 +229,7 @@ class DataTableWidgetState extends State<DataTableWidget> {
 
   // Reusable TextStyle method
   TextStyle _textStyle() {
-    return TextStyle(
+    return const TextStyle(
       fontFamily: 'Gotham-Bold',
       fontSize: 14,
       fontWeight: FontWeight.w500,
@@ -256,7 +256,7 @@ Widget _buildInfoRow(String label, String value) {
       const SizedBox(width: 40),
       const Text(":"),
       const SizedBox(width: 20),
-      Text(value,style: TextStyle(
+      Text(value,style: const TextStyle(
          // color: AppColors.TxtColor
         color: AppColors.darkGrey,
         fontWeight: FontWeight.bold,

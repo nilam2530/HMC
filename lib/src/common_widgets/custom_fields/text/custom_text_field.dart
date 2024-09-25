@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:web_responsive_flutter/src/app_configs/app_colors.dart';
-import 'package:web_responsive_flutter/src/common_widgets/custom_fields/text/custom_text_field_provider.dart';
+
+import '../../../app_configs/app_colors.dart';
+import 'custom_text_field_provider.dart';
 
 class CustomTextField extends StatefulWidget {
   final String labelText;
@@ -33,7 +34,7 @@ class CustomTextField extends StatefulWidget {
     this.enabled,
     this.passIconColor,
     this.fieldKey,
-    this.maxLines = 1, // Default value of maxLines is set to 1
+    this.maxLines = 1,
     this.controller,
   });
 
@@ -48,12 +49,25 @@ class CustomTextFieldState extends State<CustomTextField> {
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController(text: widget.initialValue);
+    // Use the provided controller or create a new one with the initial value
+    _controller = widget.controller ?? TextEditingController(text: widget.initialValue);
+  }
+
+  @override
+  void didUpdateWidget(covariant CustomTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // If initialValue or controller changes, update the text in the controller
+    if (widget.controller == null && widget.initialValue != oldWidget.initialValue) {
+      _controller.text = widget.initialValue ?? '';
+    }
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    // Only dispose of the controller if it was created internally
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 
@@ -75,11 +89,9 @@ class CustomTextFieldState extends State<CustomTextField> {
         double borderRadius = 5.0;
 
         if (constraints.maxWidth > 1200) {
-          // Web layout
           padding = 16.0;
           borderRadius = 10.0;
         } else if (constraints.maxWidth > 600) {
-          // Tablet layout
           padding = 12.0;
           borderRadius = 8.0;
         }
@@ -107,6 +119,7 @@ class CustomTextFieldState extends State<CustomTextField> {
                 decoration: InputDecoration(
                   errorMaxLines: 2,
                   filled: true,
+                  labelStyle: const TextStyle(fontSize: 12,color: Colors.black),
                   fillColor: widget.isDarkThemed
                       ? const Color(0xFF034634)
                       : Colors.white,
@@ -114,16 +127,16 @@ class CustomTextFieldState extends State<CustomTextField> {
                     borderRadius: BorderRadius.circular(borderRadius),
                     borderSide: BorderSide(
                       color: widget.isDarkThemed
-                          ? Colors.transparent
+                          ? AppColors.outlineBorderColor
                           : AppColors.outlineBorderColor,
-                      width: 0.5,
+                      width: 1.0,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(borderRadius),
                     borderSide: const BorderSide(
                       color: AppColors.outlineBorderColor,
-                      width: 1,
+                      width: 1.0,
                     ),
                   ),
                   errorBorder: OutlineInputBorder(
@@ -137,24 +150,21 @@ class CustomTextFieldState extends State<CustomTextField> {
                   suffixIcon: widget.suffix ??
                       (widget.isPassword
                           ? GestureDetector(
-                              onTap: togglePasswordVisibility,
-                              child: Icon(
-                                _isPasswordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: widget.passIconColor ??
-                                    AppColors.secondaryTextColor,
-                              ),
-                            )
+                        onTap: togglePasswordVisibility,
+                        child: Icon(
+                          _isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: widget.passIconColor ?? AppColors.secondaryTextColor,
+                        ),
+                      )
                           : null),
                   hintText: widget.labelText,
-                  hintStyle:
-                      const TextStyle(color: AppColors.secondaryTextColor),
+                  hintStyle: const TextStyle(color: AppColors.secondaryTextColor),
                 ),
                 style: TextStyle(
-                    color: widget.isDarkThemed
-                        ? Colors.white
-                        : AppColors.secondaryTextColor),
+                  color: widget.isDarkThemed ? Colors.white : AppColors.secondaryTextColor,
+                ),
               );
             },
           ),

@@ -165,13 +165,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         hintText: widget.textHint,
         fillColor: Colors.white,
         filled: true,
-        contentPadding: EdgeInsets.only(left: 10, right: 10, top: 10),
+        contentPadding: const EdgeInsets.only(left: 10, right: 10, top: 10),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4.r),
-            borderSide: BorderSide(width: 1)),
+            borderSide: const BorderSide(width: 1)),
         enabledBorder: OutlineInputBorder(
           borderSide:
-              BorderSide(color: Color(0xffD2D5DC).withOpacity(0.6), width: 1),
+              BorderSide(color: const Color(0xffD2D5DC).withOpacity(0.6), width: 1),
           borderRadius: BorderRadius.circular(4.r),
         ),
         focusedBorder: OutlineInputBorder(

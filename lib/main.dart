@@ -13,8 +13,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:web_responsive_flutter/firebase_options.dart';
 import 'package:web_responsive_flutter/l10n/localixation.dart';
 import 'package:web_responsive_flutter/src/common_widgets/datetime/datetime_provider.dart';
+import 'package:web_responsive_flutter/src/features/admin/Kaizen_loss/provider/kaizen_loss_provider.dart';
+import 'package:web_responsive_flutter/src/features/admin/kaizen_pillar/provider/kaizen_pillar_controller.dart';
+import 'package:web_responsive_flutter/src/features/admin/kaizen_theme/provider/kaizen_theme_provider.dart';
 import 'package:web_responsive_flutter/src/features/authentication/login/provider/login_screen_provider.dart';
-import 'package:web_responsive_flutter/src/features/dashboard/provider/dashboard_controller.dart';
 import 'package:web_responsive_flutter/src/features/sidebar/controller/sidemenu_controller.dart';
 import 'package:web_responsive_flutter/src/models/vistor_model.dart';
 import 'package:web_responsive_flutter/src/routing/route_config.dart';
@@ -74,6 +76,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => LocalizationProvider()),
         ChangeNotifierProvider(create: (_) => DateTimeProvider()),
         ChangeNotifierProvider(create: (_) => SidemeuController()),
+        ChangeNotifierProvider(create: (_) => KaizenProvider()),
+        ChangeNotifierProvider(create: (_) => KaizenThemeProvider()),
+        ChangeNotifierProvider(create: (_) => KaizenLossProvider()),
       ],
       child: Consumer2<ThemeProvider, LocalizationProvider>(
         builder: (context, themeProvider, localizationProvider, child) {

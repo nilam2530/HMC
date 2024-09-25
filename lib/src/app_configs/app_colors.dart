@@ -81,6 +81,7 @@ class AppColors {
 
   static const gradientColorsIcons3 = Color(0xFF5e72e4);
   static const gradientColorsIcons4 = Color(0xFF825ee4);
+  static const sucessful = Color(0xFF4CAF50);
 
   static const gradientColorsIcons5 = Color(0xFF2dce89);
   static const gradientColorsIcons6 = Color(0xFF2dcecc);
