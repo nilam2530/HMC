@@ -55,7 +55,7 @@ class _InboundDesktopState extends State<InboundDesktop> {
             Icon(Icons.arrow_forward_ios, weight: 10, size: 10),
             Text(
               "Edit Request",
-              style: TextStyle(color: Color(0xFF7D8286), fontSize: 16),
+              style: TextStyle(color: AppColors.dark1Grey, fontSize: 16),
             )
           ],
         ),
@@ -95,7 +95,9 @@ class _InboundDesktopState extends State<InboundDesktop> {
                               children: [
                                 const Text(
                                   'Section',
-                                  style: TextStyle(fontSize: 12),
+                                  style: TextStyle(
+                                    color: AppColors.darkGrey,
+                                      fontSize: 12),
                                 ),
                                 DropdownButtonFormField(
                                   decoration: const InputDecoration(

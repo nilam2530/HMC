@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:web_responsive_flutter/src/features/dashboard/provider/dashboard_controller.dart';
+import 'package:web_responsive_flutter/src/features/sidebar/controller/sidemenu_controller.dart';
+import 'package:web_responsive_flutter/src/themes/theme_provider.dart';
 
 class SideMenuWidget extends StatelessWidget {
   final List<MenuItemData> menuItems;
@@ -17,35 +20,41 @@ class SideMenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      width: isDrawerOpen ? 256 : 72,
-      // Animate width change
-      duration: const Duration(milliseconds: 200),
-      height: 1089,
-      decoration: const BoxDecoration(
-        color: Color(0xFF171821),
-        border: Border(
-          right: BorderSide(color: Colors.grey, width: 1),
-        ),
-      ),
-      child: ListView.builder(
-        itemCount: menuItems.length,
-        itemBuilder: (context, index) {
-          final menuItem = menuItems[index];
-          return MenuEntry(
-            icon: menuItem.icon,
-            title: menuItem.title,
-            isSelected: false,
-            isDrawerOpen: isDrawerOpen,
-            // Pass isDrawerOpen down
-            onTap: () => onItemSelected(index),
-          );
-        },
-      ),
+    return Consumer<ThemeProvider>(
+      builder: (context, model, child) {
+        return AnimatedContainer(
+          width: isDrawerOpen ? 256 : 72,
+          // Animate width change
+          duration: const Duration(milliseconds: 200),
+          height: 1089,
+          // Fixed height as per your requirement
+          decoration:  BoxDecoration(
+            color: model.currentThemeMode== ThemeMode.dark?Colors.white:Colors.black,
+            border: Border(
+              right: BorderSide(color: Colors.grey, width: 1),
+            ),
+          ),
+          child: ListView.builder(
+            itemCount: menuItems.length,
+            itemBuilder: (context, index) {
+              final menuItem = menuItems[index];
+              return MenuEntry(
+                icon: menuItem.icon,
+                title: menuItem.title,
+                isSelected: false,
+                isDrawerOpen: isDrawerOpen,
+                // Pass isDrawerOpen down
+                onTap: () => onItemSelected(index),
+              );
+            },
+          ),
+        );
+      }
     );
   }
 }
 
+// Define MenuEntry Widget
 class MenuEntry extends StatelessWidget {
   final IconData icon;
   final String title;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:web_responsive_flutter/src/app_configs/app_colors.dart';
 import 'package:web_responsive_flutter/src/app_configs/app_images.dart';
+import 'package:web_responsive_flutter/src/themes/theme_provider.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
@@ -56,13 +58,16 @@ class CustomAppBarState extends State<CustomAppBar> {
   void _filterSearchResults() {
     String query = _searchController.text.toLowerCase();
     setState(() {
-      filteredTitles =
-          titles.where((title) => title.toLowerCase().contains(query)).toList();
+      filteredTitles = titles
+          .where((title) => title.toLowerCase().contains(query))
+          .toList();
     });
   }
 
+  var themeProvider;
   @override
   Widget build(BuildContext context) {
+    themeProvider = Provider.of<ThemeProvider>(context,listen: false);
     return Container(
       decoration: const BoxDecoration(
         border: Border(
@@ -75,7 +80,10 @@ class CustomAppBarState extends State<CustomAppBar> {
         backgroundColor: AppColors.backgroundColormain,
         leading: _buildMenuIcon(),
         title: _buildTitleRow(),
-        actions: _buildActionIcons(),
+        actions: [
+          ..._buildActionIcons(),
+
+        ],
       ),
     );
   }
@@ -154,9 +162,30 @@ class CustomAppBarState extends State<CustomAppBar> {
   List<Widget> _buildActionIcons() {
     return widget.actionImages
         .map((imagePath) => IconButton(
-              icon: Image.network(imagePath, width: 20, height: 20),
-              onPressed: () {},
-            ))
+      icon: Image.network(imagePath, width: 20, height: 20),
+      onPressed: () {
+        if(imagePath.toLowerCase().contains("profile")){
+          showMenu(
+            context: context,
+            position: RelativeRect.fromLTRB(1, 50, 0, 0),
+            items: [
+              const PopupMenuItem(
+                value: 1,
+                child: Text("Dark Theme"),
+              ),
+              PopupMenuItem(
+                value: 2,
+                child: Text("Light Theme"),
+              ),
+            ],
+            elevation: 8.0,
+          ).then((value){
+            //context.read<ThemeProvider>().setTheme(themeName)
+            themeProvider!.toggleTheme(value!.isOdd?true:false);
+          });
+        }
+      },
+    ))
         .toList();
   }
 
@@ -187,7 +216,7 @@ class CustomAppBarState extends State<CustomAppBar> {
       'assets/images/employee_compliance.png',
       'assets/images/hira.png',
       'assets/images/injury_identification.png',
-      'assets/images/tag_redress.png',
+      'assets/images/tag_redressal.png',
       'assets/images/kaizen.png',
       'assets/images/opl.png',
       'assets/images/quality_alert.png',

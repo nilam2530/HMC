@@ -1,12 +1,13 @@
+// Reusable TextStyle method
 import 'package:flutter/material.dart';
-import 'package:web_responsive_flutter/src/app_configs/app_colors.dart';
 
-TextStyle textStyle() {
-  return const TextStyle(
+TextStyle _textStyle() {
+  return TextStyle(
     fontFamily: 'Gotham',
     fontSize: 14,
     fontWeight: FontWeight.w500,
     height: 18 / 14,
-    color: AppColors.darkgreyBackgroundColor,
+    // line-height calculated as a multiplier of font size
+    color: Colors.white, // Adjust color as needed
   );
 }

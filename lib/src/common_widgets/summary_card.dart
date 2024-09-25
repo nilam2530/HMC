@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../app_configs/app_colors.dart';
 
 class SummaryCard extends StatelessWidget {
@@ -30,8 +29,9 @@ class SummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(bottom: 10,left: 10),
       child: Opacity(
         opacity: opacity,
         child: LayoutBuilder(
@@ -42,8 +42,8 @@ class SummaryCard extends StatelessWidget {
             const cardHeight = 110.0;
 
             return Container(
-              width: 220,
-              height: cardHeight + 10,
+              width: 160,
+              height: size.height*.175,
               decoration: BoxDecoration(
                 color: backgroundColor,
                 borderRadius: BorderRadius.circular(8.0),
@@ -113,11 +113,8 @@ class SummaryCard extends StatelessWidget {
     );
   }
 
-  TextStyle _textStyle(BoxConstraints constraints, TextStyle? style,
-      {required bool isLabel}) {
-    final baseFontSize = isLabel
-        ? (constraints.maxWidth > 600 ? 16.0 : 14.0)
-        : (constraints.maxWidth > 600 ? 20.0 : 18.0);
+  TextStyle _textStyle(BoxConstraints constraints, TextStyle? style, {required bool isLabel}) {
+    final baseFontSize = isLabel ? (constraints.maxWidth > 600 ? 16.0 : 14.0) : (constraints.maxWidth > 600 ? 20.0 : 18.0);
     return (style ?? TextStyle()).copyWith(
       fontSize: baseFontSize,
       fontWeight: isLabel ? FontWeight.w500 : FontWeight.bold,

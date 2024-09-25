@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:web_responsive_flutter/src/app_configs/app_colors.dart';
 import 'package:web_responsive_flutter/src/app_configs/app_images.dart';
-import 'package:web_responsive_flutter/src/common_widgets/custom_appbar/custom_appBar.dart';
 import 'package:web_responsive_flutter/src/common_widgets/custom_drawer/custom_drawer.dart';
-import 'package:web_responsive_flutter/src/features/dashboard/provider/dashboard_controller.dart';
+import 'package:web_responsive_flutter/src/features/sidebar/controller/sidemenu_controller.dart';
+import 'package:web_responsive_flutter/src/features/sidebar/custom_appbar/custom_appBar.dart';
 
 class ShellLayout extends StatelessWidget {
   final Widget child;
@@ -13,7 +13,7 @@ class ShellLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dashBoardProvider = context.watch<DashBoardController>();
+    final dashBoardProvider = context.watch<SidemeuController>();
     final screenWidth = MediaQuery.of(context).size.width;
     final drawerWidth = dashBoardProvider.isDrawerOpen ? 256.0 : 56.0;
     final availableWidth = screenWidth - drawerWidth;
@@ -33,6 +33,7 @@ class ShellLayout extends StatelessWidget {
         children: [
           Row(
             children: [
+              // Side menu with animated open/close feature
               AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
                 width: drawerWidth,
@@ -46,7 +47,7 @@ class ShellLayout extends StatelessWidget {
                 ),
               ),
               // Expanded content to avoid overflow
-              SizedBox(
+              Container(
                 width: availableWidth,
                 child: child,
               ),
