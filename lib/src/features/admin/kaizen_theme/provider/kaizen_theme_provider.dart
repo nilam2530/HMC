@@ -7,12 +7,9 @@ import '../../../../models/kaizen_theme_model.dart';
 class KaizenThemeProvider with ChangeNotifier {
   static const int _rowsPerPage = 10;
   int _currentPage = 0;
-  final TextEditingController plantNameController = TextEditingController();
-  final TextEditingController pillarNameController = TextEditingController();
-  final TextEditingController pillarHeadECNoController =
-  TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController sortOrderController = TextEditingController();
-  String selectedPillarHead = '';
+  String selectetThemeStatus = '';
   List<KaizenThemeTableModel> newData = List.generate(
     50,
         (index) => KaizenThemeTableModel(
@@ -42,16 +39,14 @@ class KaizenThemeProvider with ChangeNotifier {
 
   int get totalPages => (newData.length / _rowsPerPage).ceil();
 
-  void addNewPillar({
-    required String plantName,
-    required String pillarName,
-    required String pillarHeadECNo,
+  void addNewTheme({
+    required String name,
     required String sortOrder,
     required String status,
   }) {
     final newPillar = KaizenThemeTableModel(
       id: (newData.length + 1).toString(),
-      name: plantName,
+      name: name,
       sortNo: sortOrder,
       status: status,
       action: "Action ${newData.length + 1}",
@@ -59,16 +54,15 @@ class KaizenThemeProvider with ChangeNotifier {
 
     newData.add(newPillar);
 
-    plantNameController.clear();
-    pillarNameController.clear();
-    pillarHeadECNoController.clear();
+    nameController.clear();
+
     sortOrderController.clear();
-    selectedPillarHead = '';
+    selectetThemeStatus = '';
     notifyListeners();
   }
 
   void setSelectedPillarHead(String value) {
-    selectedPillarHead = value;
+    selectetThemeStatus = value;
     notifyListeners();
   }
 }

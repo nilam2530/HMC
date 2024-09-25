@@ -31,23 +31,21 @@ class _MyCustomButtonState extends State<MyCustomButton> {
       child: GestureDetector(
         onTap: widget.onTap,
         child: SizedBox(
-          width: 200,
-          height: screenHeight * 0.08,
+          width: 150,
+          height: screenHeight * 0.05,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center, // Center the content
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (widget.icon != null) ...[
-                // Display the icon if provided
                 widget.icon!,
-                const SizedBox(width: 8), // Space between icon and text
+                const SizedBox(width: 8),
               ],
               widget.mWidget ??
                   Text(
                     widget.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: widget.textColor,
+                      color: Colors.white,
                       fontFamily: "OpenSansBold",
                     ),
                   ),
@@ -60,23 +58,23 @@ class _MyCustomButtonState extends State<MyCustomButton> {
 }
 
 class MyPainter extends CustomPainter {
-  final Color backgroundColor; // Store the background color
+  final Color backgroundColor;
 
-  MyPainter(this.backgroundColor); // Constructor to receive the color
+  MyPainter(this.backgroundColor);
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = backgroundColor // Use the passed color
+      ..color = backgroundColor
       ..style = PaintingStyle.fill;
 
     final path = Path()
-      ..moveTo(16, 0)
+      ..moveTo(10, 0)
       ..lineTo(size.width, 0)
-      ..lineTo(size.width, size.height - 16)
-      ..lineTo(size.width - 16, size.height)
+      ..lineTo(size.width, size.height - 10)
+      ..lineTo(size.width - 10, size.height)
       ..lineTo(0, size.height)
-      ..lineTo(0, 16)
+      ..lineTo(0, 10)
       ..close();
 
     canvas.drawPath(path, paint);
@@ -84,6 +82,6 @@ class MyPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    return true; // Consider refining this for performance
+    return true;
   }
 }

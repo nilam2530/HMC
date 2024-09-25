@@ -40,7 +40,7 @@ class _KaizenFormState extends State<KaizenForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
+              const Center(
                 child: Column(
                   children: [
                     Text(
@@ -51,7 +51,7 @@ class _KaizenFormState extends State<KaizenForm> {
                         color: AppColors.darkGrey,
                       ),
                     ),
-                    const SizedBox(height: 8.0),
+                    SizedBox(height: 8.0),
                     Text(
                       'For making our processes better',
                       style: TextStyle(
@@ -195,7 +195,7 @@ class _KaizenFormState extends State<KaizenForm> {
                 children: [
                   Expanded(child: MyCustomButton(name: 'Hello', textColor: Colors.white, btnColor: AppColors.darkMaron, onTap: () {  },))
                  ,
-                  SizedBox(width: 20,),
+                  const SizedBox(width: 20,),
                   Expanded(child: MyCustomButton(icon: Image.asset(AppImages.appBarProfile),name: 'my icon', textColor: Colors.white, btnColor: AppColors.darkMaron, onTap: () {  },))
 
                 ],

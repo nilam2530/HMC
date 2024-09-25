@@ -119,6 +119,7 @@ class CustomTextFieldState extends State<CustomTextField> {
                 decoration: InputDecoration(
                   errorMaxLines: 2,
                   filled: true,
+                  labelStyle: const TextStyle(fontSize: 12,color: Colors.black),
                   fillColor: widget.isDarkThemed
                       ? const Color(0xFF034634)
                       : Colors.white,

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:web_responsive_flutter/src/app_configs/app_colors.dart';
+import '../../../app_configs/app_images.dart';
 import '../../../app_configs/text_styles.dart';
+import '../../../common_widgets/custom_btn/custom_elevated_btn.dart';
 import '../../../common_widgets/custom_data_table/custom_data_table.dart';
 import '../../../models/kaizen_pillar_table_model.dart';
 import 'provider/kaizen_pillar_controller.dart';
@@ -61,33 +63,16 @@ class _KaizenPillarViewState extends State<KaizenPillarView> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: GestureDetector(
-                            onTap: () {
-                              GoRouter.of(context).go('/addPillar');
-                            },
-                            child: Container(
-                              height: 30,
-                              width: 100,
-                              decoration: const BoxDecoration(
-                                color: AppColors.darkMaron,
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.zero,
-                                  topLeft: Radius.circular(6),
-                                  bottomLeft: Radius.zero,
-                                  bottomRight: Radius.circular(6),
-                                ),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  "Add Pillar",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            )),
+                        child: MyCustomButton(
+                          name: 'Add Theme',
+                          textColor: AppColors.whiteColor,
+                          icon: Image.asset(AppImages.addNew,
+                              width: 16, height: 16),
+                          btnColor: AppColors.darkMaron,
+                          onTap: () {
+                            GoRouter.of(context).go('/kaizenAddPillar');
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -186,19 +171,17 @@ class _KaizenPillarViewState extends State<KaizenPillarView> {
                           child: CustomDataTableWidget<KaizenPillarTableModel>(
                             data: controller.newData,
                             columnTitles: const [
-                              '  Id',
+                              'Id',
                               'Plant Name',
                               'Pillar Name',
                               'Pillar Head EC No',
                               'Sort Order',
                               'Status',
                             ],
-                            columnTitlesStyle: textStyle(),
+                            // columnTitlesStyle: textStyle(),
+
                             columnBuilders: [
-                              (data) => Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(data.id, style: textStyle()),
-                                  ),
+                              (data) => Text(data.id, style: textStyle()),
                               (data) =>
                                   Text(data.plantName, style: textStyle()),
                               (data) =>

@@ -30,7 +30,7 @@ class SideMenuWidget extends StatelessWidget {
           // Fixed height as per your requirement
           decoration:  BoxDecoration(
             color: model.currentThemeMode== ThemeMode.dark?Colors.white:Colors.black,
-            border: Border(
+            border: const Border(
               right: BorderSide(color: Colors.grey, width: 1),
             ),
           ),

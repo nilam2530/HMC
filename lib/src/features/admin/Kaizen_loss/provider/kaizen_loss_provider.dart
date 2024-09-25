@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:web_responsive_flutter/src/models/pillar_model.dart';
 
+import '../../../../models/kaizen_loss_model.dart';
 import '../../../../models/kaizen_pillar_table_model.dart';
 
-class KaizenProvider with ChangeNotifier {
+class KaizenLossProvider with ChangeNotifier {
   static const int _rowsPerPage = 10;
   int _currentPage = 0;
   final TextEditingController plantNameController = TextEditingController();
   final TextEditingController pillarNameController = TextEditingController();
   final TextEditingController pillarHeadECNoController =
-      TextEditingController();
+  TextEditingController();
   final TextEditingController sortOrderController = TextEditingController();
   String selectedPillarHead = '';
-  List<KaizenPillarTableModel> newData = List.generate(
+  List<KaizenLossTableModel> newData = List.generate(
     50,
-    (index) => KaizenPillarTableModel(
+        (index) => KaizenLossTableModel(
       id: (index + 1).toString(),
-      plantName: "Plant ${index + 1}",
-      pillarHeadECNo: "EC${(index + 100).toString().padLeft(3, '0')}",
-      sortNo: (index + 1).toString(),
-      status: index % 2 == 0 ? "Pending" : "Completed",
+      lossNumber: "${index + 1}",
+      lossName: "Break Down Loss${index + 1}",
+      sortOrder: (index + 1).toString(),
+      status: index % 2 == 0 ? "Enable" : "Completed",
       action: "Action ${index + 1}",
-      pillarName: "Pillar ${index % 3 + 1}",
     ),
   );
 
-  List<KaizenPillarTableModel> get paginatedData {
+  List<KaizenLossTableModel> get paginatedData {
     final start = _currentPage * _rowsPerPage;
     final end = start + _rowsPerPage;
     return newData.sublist(start, end.clamp(0, newData.length));
@@ -50,12 +50,11 @@ class KaizenProvider with ChangeNotifier {
     required String sortOrder,
     required String status,
   }) {
-    final newPillar = KaizenPillarTableModel(
+    final newPillar = KaizenLossTableModel(
       id: (newData.length + 1).toString(),
-      plantName: plantName,
-      pillarName: pillarName,
-      pillarHeadECNo: pillarHeadECNo,
-      sortNo: sortOrder,
+      lossName: plantName,
+      lossNumber: pillarHeadECNo,
+      sortOrder: sortOrder,
       status: status,
       action: "Action ${newData.length + 1}",
     );
