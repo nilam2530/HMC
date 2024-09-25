@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:web_responsive_flutter/src/app_configs/app_colors.dart';
 import 'package:web_responsive_flutter/src/app_configs/app_images.dart';
 import 'package:web_responsive_flutter/src/common_widgets/custom_btn/custom_elevated_btn.dart';
+import 'package:web_responsive_flutter/src/common_widgets/paint_custom/custom_container.dart';
 
 class KaizenForm extends StatefulWidget {
   @override
@@ -193,13 +194,18 @@ class _KaizenFormState extends State<KaizenForm> {
               ),
               Row(
                 children: [
-                  Expanded(child: MyCustomButton(name: 'Hello', textColor: Colors.white, btnColor: AppColors.darkMaron, onTap: () {  },))
-                 ,
+                  Expanded(child: MyCustomButton(name: 'Hello', textColor: Colors.white, btnColor: AppColors.darkMaron, onTap: () {  },)),
                   SizedBox(width: 20,),
                   Expanded(child: MyCustomButton(icon: Image.asset(AppImages.appBarProfile),name: 'my icon', textColor: Colors.white, btnColor: AppColors.darkMaron, onTap: () {  },))
 
                 ],
-              )
+              ),
+              CustomContainer(
+                borderColor: Colors.grey,
+                btnColor: Colors.pink,
+                widthFactor: 0.5,  // 50% of screen width
+                heightFactor: 0.25, // 25% of screen height
+              ),
             ],
           ),
         ),

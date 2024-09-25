@@ -32,9 +32,9 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  ThemeMode currentThemeMode = ThemeMode.light;
-
   ThemeMode get themeMode => currentThemeMode;
+
+  ThemeMode currentThemeMode = ThemeMode.light;
 
   toggleTheme(bool isDark) {
     currentThemeMode = isDark ? ThemeMode.dark : ThemeMode.light;

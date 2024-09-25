@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web_responsive_flutter/src/common_widgets/paint_custom/paint.dart';
 
 class MyCustomButton extends StatefulWidget {
   final String name;
@@ -31,7 +32,7 @@ class _MyCustomButtonState extends State<MyCustomButton> {
       child: GestureDetector(
         onTap: widget.onTap,
         child: SizedBox(
-          width: 200,
+          width: screenHeight * 0.08,
           height: screenHeight * 0.08,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center, // Center the content
@@ -59,31 +60,4 @@ class _MyCustomButtonState extends State<MyCustomButton> {
   }
 }
 
-class MyPainter extends CustomPainter {
-  final Color backgroundColor; // Store the background color
 
-  MyPainter(this.backgroundColor); // Constructor to receive the color
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = backgroundColor // Use the passed color
-      ..style = PaintingStyle.fill;
-
-    final path = Path()
-      ..moveTo(16, 0)
-      ..lineTo(size.width, 0)
-      ..lineTo(size.width, size.height - 16)
-      ..lineTo(size.width - 16, size.height)
-      ..lineTo(0, size.height)
-      ..lineTo(0, 16)
-      ..close();
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true; // Consider refining this for performance
-  }
-}
